@@ -2,25 +2,17 @@
 
 namespace SleepingGodsDistantSkies.Model;
 
-internal partial class MapArea : ObservableObject
+internal partial class MapArea(string mapName, string imageName, int startPage, int endPage) : ObservableObject
 {
-    public MapArea(string mapName, string imageName, int startPage, int endPage)
-    {
-        _name = mapName;
-        _image = new Image { Source = ImageSource.FromFile(imageName) };
-        _startPage = startPage;
-        _endPage = endPage;
-    }
+    [ObservableProperty]
+    private string _name = mapName;
 
     [ObservableProperty]
-    private string _name;
+    private ImageSource _image = ImageSource.FromFile(imageName);
 
     [ObservableProperty]
-    private Image _image;
+    private int _startPage = startPage;
 
     [ObservableProperty]
-    private int _startPage;
-
-    [ObservableProperty]
-    private int _endPage;
+    private int _endPage = endPage;
 }
