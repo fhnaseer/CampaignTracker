@@ -1,6 +1,6 @@
 namespace SleepingGodsDistantSkies.Views;
 
-public partial class MapPage : ContentPage
+public partial class MapAreaPage : ContentPage
 {
     public MapPage()
     {

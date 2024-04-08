@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SleepingGodsDistantSkies.Model;
+using SleepingGodsDistantSkies.Views;
 
 namespace SleepingGodsDistantSkies.ViewModels;
 
@@ -15,8 +16,7 @@ internal partial class MainPageViewModel : ObservableObject
     private MapArea[] _mapAreas;
 
     [RelayCommand]
-    private void GoToMap(MapArea mapArea)
+    private async void GoToMap(MapArea mapArea)
     {
-
     }
 }
