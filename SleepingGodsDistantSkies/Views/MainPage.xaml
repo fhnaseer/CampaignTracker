@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              x:Class="SleepingGodsDistantSkies.Views.MainPage">
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel/>
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <Grid>
@@ -15,15 +19,17 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Grid.Column="0" Source="dotnet_bot.png" Aspect="AspectFill" />
-            <Image Grid.Row="0" Grid.Column="1" Source="dotnet_bot.png" Aspect="AspectFill" />
-            <Image Grid.Row="0" Grid.Column="2" Source="dotnet_bot.png" Aspect="AspectFill" />
-            <Image Grid.Row="1" Grid.Column="0" Source="dotnet_bot.png" Aspect="AspectFill" />
-            <Image Grid.Row="1" Grid.Column="1" Source="dotnet_bot.png" Aspect="AspectFill" />
-            <Image Grid.Row="1" Grid.Column="2" Source="dotnet_bot.png" Aspect="AspectFill" />
-            <Image Grid.Row="2" Grid.Column="0" Source="dotnet_bot.png" Aspect="AspectFill" />
-            <Image Grid.Row="2" Grid.Column="1" Source="dotnet_bot.png" Aspect="AspectFill" />
-            <Image Grid.Row="2" Grid.Column="2" Source="dotnet_bot.png" Aspect="AspectFill" />
+            <ImageButton Grid.Row="0" Grid.Column="0" Source="{Binding MapAreas[0].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[0]}" />
+            <ImageButton Grid.Row="0" Grid.Column="1" Source="{Binding MapAreas[1].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[1]}" />
+            <ImageButton Grid.Row="0" Grid.Column="2" Source="{Binding MapAreas[2].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[2]}" />
+
+            <ImageButton Grid.Row="1" Grid.Column="0" Source="{Binding MapAreas[3].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[3]}" />
+            <ImageButton Grid.Row="1" Grid.Column="1" Source="{Binding MapAreas[4].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[4]}" />
+            <ImageButton Grid.Row="1" Grid.Column="2" Source="{Binding MapAreas[5].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[5]}" />
+
+            <ImageButton Grid.Row="2" Grid.Column="0" Source="{Binding MapAreas[6].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[6]}" />
+            <ImageButton Grid.Row="2" Grid.Column="1" Source="{Binding MapAreas[7].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[7]}" />
+            <ImageButton Grid.Row="2" Grid.Column="2" Source="{Binding MapAreas[8].Image}" Aspect="AspectFill" Command="{Binding GoToMapCommand}" CommandParameter="{Binding MapAreas[8]}" />
         </Grid>
         <!--<VerticalStackLayout
             Padding="30,0"

@@ -1,5 +1,5 @@
 ﻿namespace SleepingGodsDistantSkies.ViewModels;
 
-internal class MapViewModel
+internal class LocationPageViewModel
 {
 }
