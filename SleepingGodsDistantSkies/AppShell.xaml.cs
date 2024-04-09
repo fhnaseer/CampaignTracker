@@ -9,5 +9,6 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
         Routing.RegisterRoute(nameof(MapAreaViewModel), typeof(MapAreaPage));
+        Routing.RegisterRoute(nameof(LocationViewModel), typeof(LocationPage));
     }
 }

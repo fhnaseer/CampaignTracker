@@ -3,11 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              x:Class="SleepingGodsDistantSkies.Views.LocationPage"
-             Title="LocationView">
+             x:DataType="viewModels:LocationViewModel"
+             Title="{Binding Location.Number}">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button Text="Back" Command="{Binding GoBackCommand}" />
     </VerticalStackLayout>
 </ContentPage>

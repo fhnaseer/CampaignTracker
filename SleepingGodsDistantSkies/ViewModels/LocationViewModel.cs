@@ -2,6 +2,9 @@
 
 namespace SleepingGodsDistantSkies.ViewModels;
 
-public partial class LocationViewModel : ObservableObject
+[QueryProperty(nameof(Model.Location), nameof(Model.Location))]
+public partial class LocationViewModel : ViewModelBase
 {
+    [ObservableProperty]
+    private Model.Location? _location;
 }
