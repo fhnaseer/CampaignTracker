@@ -1,6 +1,6 @@
 ﻿namespace SleepingGodsDistantSkies.Model;
 
-internal class Location
+public class Location
 {
     internal List<Location> Locations { get; set; } = [];
 

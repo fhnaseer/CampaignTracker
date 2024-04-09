@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SleepingGodsDistantSkies.Model;
+
 namespace SleepingGodsDistantSkies.ViewModels;
 
-internal partial class MapAreaPageViewModel : ObservableObject
+public partial class MapAreaViewModel : ObservableObject
 {
     public MapArea? MapArea { get; set; }
 

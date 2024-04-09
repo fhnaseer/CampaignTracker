@@ -2,7 +2,7 @@
 
 namespace SleepingGodsDistantSkies.Model;
 
-internal partial class MapArea(string mapName, string imageName, int startPage, int endPage: ObservableObject
+public partial class MapArea(string mapName, string imageName, int startPage, int endPage) : ObservableObject
 {
     public MapArea? North { get; set; }
 

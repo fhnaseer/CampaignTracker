@@ -1,9 +1,12 @@
+using SleepingGodsDistantSkies.ViewModels;
+
 namespace SleepingGodsDistantSkies.Views;
 
 public partial class MapAreaPage : ContentPage
 {
-    public MapPage()
+    public MapAreaPage(MapAreaViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
     }
 }

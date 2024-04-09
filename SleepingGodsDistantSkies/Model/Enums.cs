@@ -1,6 +1,6 @@
 ﻿namespace SleepingGodsDistantSkies.Model;
 
-internal enum LocationStatus
+public enum LocationStatus
 {
     Unexplored,
     Explorer,
@@ -8,7 +8,7 @@ internal enum LocationStatus
     Crossed
 }
 
-internal enum ChallengeType
+public enum ChallengeType
 {
     Perception,
     Moxxy,

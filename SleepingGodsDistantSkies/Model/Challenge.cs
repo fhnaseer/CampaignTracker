@@ -1,6 +1,6 @@
 ﻿namespace SleepingGodsDistantSkies.Model;
 
-internal class Challenge
+public class Challenge
 {
     public ChallengeType ChallengeType { get; set; }
 
