@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              x:Class="SleepingGodsDistantSkies.Views.MapAreaPage"
-             x:DataType="viewModels:MapAreaViewModel"
              Title="MapView">
     <VerticalStackLayout>
         <Label 
