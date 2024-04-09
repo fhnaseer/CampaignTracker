@@ -1,10 +1,11 @@
 ﻿using SleepingGodsDistantSkies.Model;
+using System.Collections.ObjectModel;
 
 namespace SleepingGodsDistantSkies.StaticContent;
 
 internal static class MapAreas
 {
-    public static MapArea[] GetMapAreas()
+    public static ObservableCollection<MapArea> GetMapAreas()
     {
         MapArea serracksEdge = new("Serracks Edge", "Serracks_edge.png", 14, 15);
         MapArea tundra = new("Tundra", "tundra.png", 16, 17);

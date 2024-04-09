@@ -19,11 +19,10 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<MainViewModel>();
-
-        //builder.Services.AddSingleton<MapAreaPage>();
-        //builder.Services.AddSingleton<MapAreaViewModel>();
-        //builder.Services.AddSingleton<LocationPage>();
-        //builder.Services.AddSingleton<LocationViewModel>();
+        builder.Services.AddSingleton<MapAreaPage>();
+        builder.Services.AddSingleton<MapAreaViewModel>();
+        builder.Services.AddSingleton<LocationPage>();
+        builder.Services.AddSingleton<LocationViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();

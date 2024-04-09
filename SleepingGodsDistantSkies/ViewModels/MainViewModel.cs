@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SleepingGodsDistantSkies.Model;
+using System.Collections.ObjectModel;
 
 namespace SleepingGodsDistantSkies.ViewModels;
 
@@ -8,14 +9,28 @@ public partial class MainViewModel : ObservableObject
 {
     public MainViewModel()
     {
-        _mapAreas = StaticContent.MapAreas.GetMapAreas();
+        MapAreas = StaticContent.MapAreas.GetMapAreas();
     }
 
     [ObservableProperty]
-    private MapArea[] _mapAreas;
+    private ObservableCollection<MapArea> _mapAreas;
 
     [RelayCommand]
-    private void GoToMap(MapArea mapArea)
+    private async Task GoToMap(MapArea mapArea)
     {
+        Dictionary<string, object> dictionary = new()
+        {
+            { "MapArea", mapArea }
+        };
+        try
+        {
+            await Shell.Current.GoToAsync(nameof(MapAreaViewModel), dictionary);
+
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
     }
 }

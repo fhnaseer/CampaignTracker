@@ -3,9 +3,11 @@ using SleepingGodsDistantSkies.Model;
 
 namespace SleepingGodsDistantSkies.ViewModels;
 
+[QueryProperty("MapArea", "MapArea")]
 public partial class MapAreaViewModel : ObservableObject
 {
-    public MapArea? MapArea { get; set; }
+    [ObservableProperty]
+    private MapArea? _mapArea;
 
     [ObservableProperty]
     private Model.Location? _selectedLocation;
