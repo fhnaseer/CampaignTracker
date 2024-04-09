@@ -4,12 +4,14 @@
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              x:Class="SleepingGodsDistantSkies.Views.MapAreaPage"
              x:DataType="viewModels:MapAreaViewModel"
-             Title="MapView">
+             Title="{Binding MapArea.Name}">
     <VerticalStackLayout>
         <Label 
             Text="{Binding MapArea.Name}"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <ListView ItemsSource="{Binding MapArea.Locations}" SelectedItem="{Binding SelectedLocation}" />
+
+        <Button Text="Back" Command="{Binding GoBackCommand}" />
     </VerticalStackLayout>
 </ContentPage>

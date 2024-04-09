@@ -20,17 +20,8 @@ public partial class MainViewModel : ObservableObject
     {
         Dictionary<string, object> dictionary = new()
         {
-            { "MapArea", mapArea }
+            { nameof(MapArea), mapArea }
         };
-        try
-        {
-            await Shell.Current.GoToAsync(nameof(MapAreaViewModel), dictionary);
-
-        }
-        catch (Exception ex)
-        {
-
-            throw;
-        }
+        await Shell.Current.GoToAsync(nameof(MapAreaViewModel), dictionary);
     }
 }
