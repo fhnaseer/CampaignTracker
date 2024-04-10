@@ -1,4 +1,6 @@
-﻿namespace SleepingGodsDistantSkies.ViewModels;
+﻿using SleepingGodsDistantSkies.StaticContent;
+
+namespace SleepingGodsDistantSkies.ViewModels;
 
 [QueryProperty(nameof(CampaignData), nameof(CampaignData))]
 public abstract partial class ViewModelBase : ObservableObject
@@ -12,33 +14,43 @@ public abstract partial class ViewModelBase : ObservableObject
         await Shell.Current.GoToAsync("..");
     }
 
-    protected async Task GoToMapLocation(MapLocation mapLocation)
+    [RelayCommand]
+    protected async Task GoToStory(Story story)
     {
-        if (mapLocation.LocationStatus is LocationStatus.NotAvailable or LocationStatus.Crossed)
-        {
+        if (story.Status is Status.NotAvailable or Status.Crossed)
             return;
-        }
-
-        if (mapLocation.LocationStatus == LocationStatus.Unexplored)
-        {
-            mapLocation.LocationStatus = LocationStatus.Explored;
-        }
 
         Dictionary<string, object> state = new()
         {
-            { nameof(MapLocation), mapLocation },
+            { nameof(Story), story },
             { nameof(CampaignData), CampaignData ?? new CampaignData("") }
         };
-        await Shell.Current.GoToAsync(nameof(MapLocationViewModel), state);
+
+        if (story.Status == Status.Unexplored)
+        {
+            story.Status = Status.Explored;
+            await Shell.Current.GoToAsync(nameof(AddStoryViewModel), state);
+        }
+        else
+        {
+            await Shell.Current.GoToAsync(nameof(ExploreStoryViewModel), state);
+        }
     }
 
-    protected async Task GoToMapArea(MapArea mapArea)
+    [RelayCommand]
+    protected async Task GoToTown(Town town)
     {
         Dictionary<string, object> state = new()
         {
-            { nameof(MapArea), mapArea },
+            { nameof(Town), town },
             { nameof(CampaignData), CampaignData ?? new CampaignData("") }
         };
-        await Shell.Current.GoToAsync(nameof(MapAreaViewModel), state);
+        await Shell.Current.GoToAsync(nameof(ExploreTownViewModel), state);
+    }
+
+    [RelayCommand]
+    protected void Save(CampaignData campaignData)
+    {
+        FileHelpers.SaveCampaign(campaignData);
     }
 }

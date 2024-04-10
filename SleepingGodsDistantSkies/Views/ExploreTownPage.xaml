@@ -3,22 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
-             x:Class="SleepingGodsDistantSkies.Views.MapAreaPage"
-             x:DataType="viewModels:MapAreaViewModel"
-             Title="{Binding MapArea.Name}">
+             x:Class="SleepingGodsDistantSkies.Views.ExploreTownPage"
+             x:DataType="viewModels:ExploreTownViewModel"
+             Title="{Binding Town.Name}">
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding MapArea.Locations}">
+            <CollectionView ItemsSource="{Binding Town.Locations}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:MapLocation">
+                    <DataTemplate x:DataType="model:Story">
                         <Grid Padding="5">
                             <Frame>
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MapAreaViewModel}}, Path=SelectLocationCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExploreTownViewModel}}, Path=GoToStoryCommand}" CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                                 <StackLayout>
                                     <Label Text="{Binding Number}" />
-                                    <Label Text="{Binding LocationStatus}" />
+                                    <Label Text="{Binding Status}" />
                                 </StackLayout>
                             </Frame>
                         </Grid>
@@ -26,6 +26,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <Button Text="Back" Command="{Binding GoBackCommand}" />
+            <Button Text="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding CampaignData}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

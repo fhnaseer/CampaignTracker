@@ -10,7 +10,7 @@ internal static class FileHelpers
 
     public static CampaignData CreateCampaign(string campaignName)
     {
-        string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignsListFilename);
+        string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignsListFilename + ".json");
         using Stream fileStream = File.Open(path, FileMode.Append);
         using StreamWriter fileWriter = new(fileStream);
         fileWriter.WriteLine(campaignName);
@@ -23,24 +23,22 @@ internal static class FileHelpers
 
     public static async Task<ObservableCollection<CampaignData>> GetCampaigns()
     {
-        string fileContent = await ReadTextFile(_campaignsListFilename).ConfigureAwait(false);
+        string fileContent = await ReadTextFile(_campaignsListFilename + ".json").ConfigureAwait(false);
         string[] campaignNames = fileContent.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
         ObservableCollection<CampaignData> campaigns = [];
 
         foreach (string name in campaignNames)
         {
-            string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + name);
+            string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + name + ".json");
 
-            if (File.Exists(path))
-            {
-                using Stream fileStream = File.Open(path, FileMode.Open);
-                CampaignData? campaign = await JsonSerializer.DeserializeAsync<CampaignData>(fileStream).ConfigureAwait(false);
+            if (!File.Exists(path))
+                continue;
 
-                if (campaign is not null)
-                {
-                    campaigns.Add(campaign);
-                }
-            }
+            using Stream fileStream = File.Open(path, FileMode.Open);
+            CampaignData? campaign = await JsonSerializer.DeserializeAsync<CampaignData>(fileStream).ConfigureAwait(false);
+
+            if (campaign is not null)
+                campaigns.Add(campaign);
         }
 
         return campaigns;
@@ -48,7 +46,7 @@ internal static class FileHelpers
 
     public static void SaveCampaign(CampaignData campaign)
     {
-        string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + campaign.Name);
+        string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + campaign.Name + ".json");
         using Stream campaingStream = File.OpenWrite(path);
         using StreamWriter campaingWriter = new(campaingStream);
         campaingWriter.Write(JsonSerializer.Serialize(campaign));

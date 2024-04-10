@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
-             x:Class="SleepingGodsDistantSkies.Views.MapLocationPage"
-             x:DataType="viewModels:MapLocationViewModel"
-             Title="{Binding MapLocation.Number}">
+             x:Class="SleepingGodsDistantSkies.Views.ExploreStoryPage"
+             x:DataType="viewModels:ExploreStoryViewModel"
+             Title="{Binding Story.Number}">
     <VerticalStackLayout>
         <!--<Picker ItemsSource="{Binding Source={}}" />-->
 

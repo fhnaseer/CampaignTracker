@@ -63,11 +63,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\MapLocationPage.xaml.cs">
-	    <DependentUpon>MapLocationPage.xaml</DependentUpon>
+	  <Compile Update="Views\AddStoryPage.xaml.cs">
+	    <DependentUpon>AddStoryPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\MapAreaPage.xaml.cs">
-	    <DependentUpon>MapAreaPage.xaml</DependentUpon>
+	  <Compile Update="Views\ExploreStoryPage.xaml.cs">
+	    <DependentUpon>ExploreStoryPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ExploreTownPage.xaml.cs">
+	    <DependentUpon>ExploreTownPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -75,10 +78,13 @@
 	  <MauiXaml Update="Views\CampaignPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MapLocationPage.xaml">
+	  <MauiXaml Update="Views\AddStoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\MapAreaPage.xaml">
+	  <MauiXaml Update="Views\ExploreStoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ExploreTownPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

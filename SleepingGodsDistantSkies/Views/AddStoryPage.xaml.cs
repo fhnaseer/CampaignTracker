@@ -1,8 +1,8 @@
 namespace SleepingGodsDistantSkies.Views;
 
-public partial class MapLocationPage : ContentPage
+public partial class AddStoryPage : ContentPage
 {
-    public MapLocationPage(MapLocationViewModel viewModel)
+    public AddStoryPage(AddStoryViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

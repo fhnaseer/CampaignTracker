@@ -1,22 +1,19 @@
-﻿using System.Text.Json.Serialization;
-
-namespace SleepingGodsDistantSkies.Model;
+﻿namespace SleepingGodsDistantSkies.Model;
 
 public partial class CampaignData : ObservableObject
 {
     public CampaignData(string name)
     {
         Name = name;
-        MapAreas = StaticContent.MapAreas.GetMapAreas();
+        Towns = StaticContent.StoryData.GetTowns();
         Keywords = [];
     }
 
     [ObservableProperty]
     private string? _name;
 
-    [property: JsonIgnore]
     [ObservableProperty]
-    private ObservableCollection<MapArea> _mapAreas;
+    private ObservableCollection<Town> _towns;
 
     [ObservableProperty]
     private ObservableCollection<string> _keywords;

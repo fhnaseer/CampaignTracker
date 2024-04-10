@@ -1,6 +1,6 @@
 ﻿namespace SleepingGodsDistantSkies.Model;
 
-public enum LocationStatus
+public enum Status
 {
     Unexplored,
     Explored,
