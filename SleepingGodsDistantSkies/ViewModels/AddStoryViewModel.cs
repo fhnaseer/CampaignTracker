@@ -19,6 +19,7 @@ public partial class AddStoryViewModel : StoryViewModelBase
             RequiredKeyword = RequiredKeyword
         };
         Story.Stories.Add(newStory);
+        StoryNumber = RequiredKeyword = null;
     }
 
     [RelayCommand]

@@ -6,9 +6,27 @@
              x:Class="SleepingGodsDistantSkies.Views.ExploreStoryPage"
              x:DataType="viewModels:ExploreStoryViewModel"
              Title="{Binding Story.Number}">
-    <VerticalStackLayout>
-        <!--<Picker ItemsSource="{Binding Source={}}" />-->
-
-        <Button Text="Back to the Town" Command="{Binding GoToTownCommand}" CommandParameter="{Binding Town}" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding Story.Stories}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Story">
+                        <Grid Padding="5">
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExploreStoryViewModel}}, Path=GoToStoryCommand}" 
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Label Text="{Binding Number}" />
+                                    <Label Text="{Binding Status}" />
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Back to the Town" Command="{Binding GoToTownCommand}" CommandParameter="{Binding Town}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
