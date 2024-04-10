@@ -1,11 +1,7 @@
 ﻿namespace SleepingGodsDistantSkies.ViewModels;
 
-[QueryProperty(nameof(Story), nameof(Story))]
-public partial class AddStoryViewModel : ViewModelBase
+public partial class AddStoryViewModel : StoryViewModelBase
 {
-    [ObservableProperty]
-    private Story? _story;
-
     [ObservableProperty]
     private string? _storyNumber;
 
@@ -29,6 +25,6 @@ public partial class AddStoryViewModel : ViewModelBase
     private async Task Explore()
     {
         if (Story is not null)
-            await GoToStory(Story);
+            await GoToStory(Town, Story);
     }
 }

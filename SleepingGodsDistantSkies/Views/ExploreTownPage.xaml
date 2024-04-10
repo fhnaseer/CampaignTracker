@@ -8,13 +8,14 @@
              Title="{Binding Town.Name}">
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding Town.Locations}">
+            <CollectionView ItemsSource="{Binding Town.Stories}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Story">
                         <Grid Padding="5">
                             <Frame>
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExploreTownViewModel}}, Path=GoToStoryCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExploreTownViewModel}}, Path=GoToStoryCommand}" 
+                                                          CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                                 <StackLayout>
                                     <Label Text="{Binding Number}" />

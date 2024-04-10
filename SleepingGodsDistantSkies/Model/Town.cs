@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace SleepingGodsDistantSkies.Model;
+﻿namespace SleepingGodsDistantSkies.Model;
 
 public partial class Town(string name, int startPage, int endPage) : ObservableObject
 {
@@ -18,5 +16,5 @@ public partial class Town(string name, int startPage, int endPage) : ObservableO
     private int _endPage = endPage;
 
     [ObservableProperty]
-    private ObservableCollection<Story> _locations = [];
+    private ObservableCollection<Story> _stories = [];
 }

@@ -1,8 +1,12 @@
 ﻿namespace SleepingGodsDistantSkies.ViewModels;
 
+[QueryProperty(nameof(Story), nameof(Story))]
 [QueryProperty(nameof(Town), nameof(Town))]
-public partial class ExploreTownViewModel : ViewModelBase
+public abstract partial class StoryViewModelBase : ViewModelBase
 {
+    [ObservableProperty]
+    private Story? _story;
+
     [ObservableProperty]
     private Town? _town;
 

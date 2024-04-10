@@ -14,14 +14,17 @@ public abstract partial class ViewModelBase : ObservableObject
         await Shell.Current.GoToAsync("..");
     }
 
-    [RelayCommand]
-    protected async Task GoToStory(Story story)
+    protected async Task GoToStory(Town? town, Story? story)
     {
+        if (town is null || story is null)
+            return;
+
         if (story.Status is Status.NotAvailable or Status.Crossed)
             return;
 
         Dictionary<string, object> state = new()
         {
+            { nameof(Town), town },
             { nameof(Story), story },
             { nameof(CampaignData), CampaignData ?? new CampaignData("") }
         };
@@ -38,8 +41,11 @@ public abstract partial class ViewModelBase : ObservableObject
     }
 
     [RelayCommand]
-    protected async Task GoToTown(Town town)
+    protected async Task GoToTown(Town? town)
     {
+        if (town is null)
+            return;
+
         Dictionary<string, object> state = new()
         {
             { nameof(Town), town },

@@ -34,17 +34,17 @@ internal static class StoryData
     {
         //Town henrikCamp = new("Henrik Camp", "henrik_camp.png", 2, 3);
         Town henrikCamp = new("Henrik Camp", 2, 3);
-        henrikCamp.Locations.Add(new("1"));
-        henrikCamp.Locations.Add(new("2"));
-        henrikCamp.Locations.Add(new("4"));
-        henrikCamp.Locations.Add(new("5"));
-        henrikCamp.Locations.Add(new("6"));
-        henrikCamp.Locations.Add(new("7"));
-        henrikCamp.Locations.Add(new("8"));
-        henrikCamp.Locations.Add(new("9"));
-        henrikCamp.Locations.Add(new("10"));
-        henrikCamp.Locations.Add(new("11"));
-        henrikCamp.Locations.Add(new("12"));
+        henrikCamp.Stories.Add(new("1"));
+        henrikCamp.Stories.Add(new("2"));
+        henrikCamp.Stories.Add(new("4"));
+        henrikCamp.Stories.Add(new("5"));
+        henrikCamp.Stories.Add(new("6"));
+        henrikCamp.Stories.Add(new("7"));
+        henrikCamp.Stories.Add(new("8"));
+        henrikCamp.Stories.Add(new("9"));
+        henrikCamp.Stories.Add(new("10"));
+        henrikCamp.Stories.Add(new("11"));
+        henrikCamp.Stories.Add(new("12"));
         return henrikCamp;
     }
 }

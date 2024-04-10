@@ -9,6 +9,6 @@
     <VerticalStackLayout>
         <!--<Picker ItemsSource="{Binding Source={}}" />-->
 
-        <Button Text="Back" Command="{Binding GoBackCommand}" />
+        <Button Text="Back to the Town" Command="{Binding GoToTownCommand}" CommandParameter="{Binding Town}" />
     </VerticalStackLayout>
 </ContentPage>
