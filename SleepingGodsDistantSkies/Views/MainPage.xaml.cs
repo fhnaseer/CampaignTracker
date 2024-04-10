@@ -1,12 +1,10 @@
-﻿using SleepingGodsDistantSkies.ViewModels;
-
-namespace SleepingGodsDistantSkies.Views;
+﻿namespace SleepingGodsDistantSkies.Views;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage()
+    public MainPage(MainViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = new MainViewModel();
+        BindingContext = viewModel;
     }
 }

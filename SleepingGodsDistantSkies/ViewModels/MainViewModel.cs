@@ -1,27 +1,44 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using SleepingGodsDistantSkies.Model;
-using System.Collections.ObjectModel;
+﻿using SleepingGodsDistantSkies.StaticContent;
 
 namespace SleepingGodsDistantSkies.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
+
     public MainViewModel()
     {
-        MapAreas = StaticContent.MapAreas.GetMapAreas();
+        _campaigns = FileHelpers.GetCampaigns().Result;
     }
 
     [ObservableProperty]
-    private ObservableCollection<MapArea> _mapAreas;
+    private string _newCampaignName = string.Empty;
+
+    [ObservableProperty]
+    private ObservableCollection<CampaignData> _campaigns;
 
     [RelayCommand]
-    private async Task GoToMap(MapArea mapArea)
+    private async Task StartCampaign()
     {
+        FileHelpers.CreateCampaign(NewCampaignName);
+        _ = await FileHelpers.GetCampaigns();
+        CampaignData data = new("start");
         Dictionary<string, object> dictionary = new()
         {
-            { nameof(MapArea), mapArea }
+            { nameof(CampaignData), data}
         };
-        await Shell.Current.GoToAsync(nameof(MapAreaViewModel), dictionary);
+        await Shell.Current.GoToAsync(nameof(CampaignViewModel), dictionary);
     }
+
+    [RelayCommand]
+    private async Task LoadCampaign()
+    {
+        CampaignData data = new("start");
+        Dictionary<string, object> dictionary = new()
+        {
+            { nameof(CampaignData), data}
+        };
+        await Shell.Current.GoToAsync(nameof(CampaignViewModel), dictionary);
+    }
+
+
 }

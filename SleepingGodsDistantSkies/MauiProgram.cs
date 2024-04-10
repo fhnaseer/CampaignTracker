@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using SleepingGodsDistantSkies.ViewModels;
-using SleepingGodsDistantSkies.Views;
 
 namespace SleepingGodsDistantSkies;
 
@@ -19,10 +17,12 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<MainViewModel>();
+        builder.Services.AddSingleton<CampaignPage>();
+        builder.Services.AddSingleton<CampaignViewModel>();
         builder.Services.AddSingleton<MapAreaPage>();
         builder.Services.AddSingleton<MapAreaViewModel>();
-        builder.Services.AddSingleton<LocationPage>();
-        builder.Services.AddSingleton<LocationViewModel>();
+        builder.Services.AddSingleton<MapLocationPage>();
+        builder.Services.AddSingleton<MapLocationViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();

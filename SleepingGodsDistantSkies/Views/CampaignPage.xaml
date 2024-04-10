@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SleepingGodsDistantSkies.Views.CampaignPage"
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
-             x:Class="SleepingGodsDistantSkies.Views.MapAreaPage"
-             x:DataType="viewModels:MapAreaViewModel"
-             Title="{Binding MapArea.Name}">
+             x:DataType="viewModels:CampaignViewModel"
+             Title="{Binding CampaignData.Name}">
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding MapArea.Locations}">
+            <CollectionView ItemsSource="{Binding CampaignData.MapAreas}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:MapLocation">
+                    <DataTemplate x:DataType="model:MapArea">
                         <Grid Padding="5">
                             <Frame>
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MapAreaViewModel}}, Path=SelectLocationCommand}" CommandParameter="{Binding .}"/>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CampaignViewModel}}, Path=GoToCommand}" CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
-                                <StackLayout>
-                                    <Label Text="{Binding Number}" />
-                                    <Label Text="{Binding LocationStatus}" />
-                                </StackLayout>
+                                <Label Text="{Binding Name}" />
+                                <!--<Image Source="{Binding Image}" WidthRequest="75" />-->
                             </Frame>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Back" Command="{Binding GoBackCommand}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

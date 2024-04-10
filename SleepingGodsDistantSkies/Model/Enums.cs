@@ -3,7 +3,7 @@
 public enum LocationStatus
 {
     Unexplored,
-    Explorer,
+    Explored,
     NotAvailable,
     Crossed
 }

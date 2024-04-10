@@ -1,7 +1,4 @@
-﻿using SleepingGodsDistantSkies.Model;
-using System.Collections.ObjectModel;
-
-namespace SleepingGodsDistantSkies.StaticContent;
+﻿namespace SleepingGodsDistantSkies.StaticContent;
 
 internal static class MapAreas
 {

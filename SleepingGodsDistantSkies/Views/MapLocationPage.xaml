@@ -2,10 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
-             x:Class="SleepingGodsDistantSkies.Views.LocationPage"
-             x:DataType="viewModels:LocationViewModel"
-             Title="{Binding Location.Number}">
+             xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
+             x:Class="SleepingGodsDistantSkies.Views.MapLocationPage"
+             x:DataType="viewModels:MapLocationViewModel"
+             Title="{Binding MapLocation.Number}">
     <VerticalStackLayout>
+        <!--<Picker ItemsSource="{Binding Source={}}" />-->
+
         <Button Text="Back" Command="{Binding GoBackCommand}" />
     </VerticalStackLayout>
 </ContentPage>
