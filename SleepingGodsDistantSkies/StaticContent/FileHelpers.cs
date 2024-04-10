@@ -29,10 +29,6 @@ internal static class FileHelpers
         string fileContent = await ReadTextFile(_campaignsListFilename).ConfigureAwait(false);
         string[] campaignNames = fileContent.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
         ObservableCollection<CampaignData> campaigns = [];
-        JsonSerializerOptions options = new(JsonSerializerDefaults.General)
-        {
-            IncludeFields = true
-        };
 
         foreach (string name in campaignNames)
         {
@@ -41,7 +37,7 @@ internal static class FileHelpers
             if (File.Exists(path))
             {
                 using Stream fileStream = File.Open(path, FileMode.Open);
-                CampaignData? campaign = await JsonSerializer.DeserializeAsync<CampaignData>(fileStream, options).ConfigureAwait(false);
+                CampaignData? campaign = await JsonSerializer.DeserializeAsync<CampaignData>(fileStream).ConfigureAwait(false);
 
                 if (campaign is not null)
                 {

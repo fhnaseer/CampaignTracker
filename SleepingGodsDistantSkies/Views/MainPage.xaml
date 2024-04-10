@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
+             xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
              x:Class="SleepingGodsDistantSkies.Views.MainPage"
              x:DataType="viewModels:MainViewModel">
     <ScrollView>
@@ -11,14 +12,13 @@
 
             <CollectionView ItemsSource="{Binding Campaigns}">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="model:CampaignData">
                         <Grid Padding="5">
                             <Frame>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=LoadCampaignCommand}" CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
-                                <Label Text="{Binding .}" />
-                                <!--<Image Source="{Binding Image}" WidthRequest="75" />-->
+                                <Label Text="{Binding Name}" />
                             </Frame>
                         </Grid>
                     </DataTemplate>

@@ -19,26 +19,17 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task StartCampaign()
     {
-        FileHelpers.CreateCampaign(NewCampaignName);
-        _ = await FileHelpers.GetCampaigns();
-        CampaignData data = new("start");
-        Dictionary<string, object> dictionary = new()
-        {
-            { nameof(CampaignData), data}
-        };
-        await Shell.Current.GoToAsync(nameof(CampaignViewModel), dictionary);
+        CampaignData campaignData = FileHelpers.CreateCampaign(NewCampaignName);
+        await LoadCampaign(campaignData);
     }
 
     [RelayCommand]
-    private async Task LoadCampaign()
+    private async Task LoadCampaign(CampaignData campaignData)
     {
-        CampaignData data = new("start");
         Dictionary<string, object> dictionary = new()
         {
-            { nameof(CampaignData), data}
+            { nameof(CampaignData), campaignData}
         };
         await Shell.Current.GoToAsync(nameof(CampaignViewModel), dictionary);
     }
-
-
 }
