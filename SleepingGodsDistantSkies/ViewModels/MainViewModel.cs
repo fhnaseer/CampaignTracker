@@ -4,7 +4,6 @@ namespace SleepingGodsDistantSkies.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-
     public MainViewModel()
     {
         _campaigns = FileHelpers.GetCampaigns().Result;
@@ -26,10 +25,10 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task LoadCampaign(CampaignData campaignData)
     {
-        Dictionary<string, object> dictionary = new()
+        Dictionary<string, object> state = new()
         {
             { nameof(CampaignData), campaignData}
         };
-        await Shell.Current.GoToAsync(nameof(CampaignViewModel), dictionary);
+        await Shell.Current.GoToAsync(nameof(CampaignViewModel), state);
     }
 }

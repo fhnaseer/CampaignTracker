@@ -10,16 +10,13 @@ internal static class FileHelpers
 
     public static CampaignData CreateCampaign(string campaignName)
     {
-        CampaignData campaign = new(campaignName);
         string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignsListFilename);
         using Stream fileStream = File.Open(path, FileMode.Append);
         using StreamWriter fileWriter = new(fileStream);
         fileWriter.WriteLine(campaignName);
 
-        path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + campaignName);
-        using Stream campaingStream = File.Create(path);
-        using StreamWriter campaingWriter = new(campaingStream);
-        campaingWriter.Write(JsonSerializer.Serialize(campaign));
+        CampaignData campaign = new(campaignName);
+        SaveCampaign(campaign);
 
         return campaign;
     }
@@ -47,6 +44,14 @@ internal static class FileHelpers
         }
 
         return campaigns;
+    }
+
+    public static void SaveCampaign(CampaignData campaign)
+    {
+        string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + campaign.Name);
+        using Stream campaingStream = File.OpenWrite(path);
+        using StreamWriter campaingWriter = new(campaingStream);
+        campaingWriter.Write(JsonSerializer.Serialize(campaign));
     }
 
     public static async Task<string> ReadTextFile(string filename)
