@@ -42,16 +42,18 @@ public partial class AddStoryViewModel : StoryViewModelBase
         };
         CurrentStory.Stories.Add(newStory);
         StoryNumber = RequiredKeyword = null;
+        SelectedExistingStory = null;
     }
 
     [RelayCommand]
-    private void AddExistingStory(Story existingStory)
+    private void AddExistingStory()
     {
         if (SelectedExistingStory is null || CurrentStory is null)
             return;
 
-        CurrentStory.Stories.Add(existingStory);
+        CurrentStory.Stories.Add(SelectedExistingStory);
         StoryNumber = RequiredKeyword = null;
+        SelectedExistingStory = null;
     }
 
     [RelayCommand]
