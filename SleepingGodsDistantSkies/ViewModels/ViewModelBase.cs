@@ -14,7 +14,7 @@ public abstract partial class ViewModelBase : ObservableObject
         await Shell.Current.GoToAsync("..");
     }
 
-    protected async Task GoToStory(Town? town, Story? story)
+    protected async Task GoToStory(Town? town, Story? story, Story? parentStory, bool forceExplore)
     {
         if (town is null || story is null)
             return;
@@ -22,22 +22,18 @@ public abstract partial class ViewModelBase : ObservableObject
         if (story.Status is Status.NotAvailable or Status.Crossed)
             return;
 
-        Dictionary<string, object> state = new()
+        Dictionary<string, object?> state = new()
         {
             { nameof(Town), town },
-            { nameof(Story), story },
-            { nameof(CampaignData), CampaignData ?? new CampaignData("") }
+            { "CurrentStory", story },
+            { "ParentStory", parentStory},
+            { nameof(CampaignData), CampaignData}
         };
 
-        if (story.Status == Status.Unexplored)
-        {
-            story.Status = Status.Explored;
+        if (story.Status == Status.Unexplored && !forceExplore)
             await Shell.Current.GoToAsync(nameof(AddStoryViewModel), state);
-        }
         else
-        {
             await Shell.Current.GoToAsync(nameof(ExploreStoryViewModel), state);
-        }
     }
 
     [RelayCommand]

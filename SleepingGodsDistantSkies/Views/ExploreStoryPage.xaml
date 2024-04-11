@@ -5,10 +5,10 @@
              xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
              x:Class="SleepingGodsDistantSkies.Views.ExploreStoryPage"
              x:DataType="viewModels:ExploreStoryViewModel"
-             Title="{Binding Story.Number}">
+             Title="{Binding CurrentStory.Number}">
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding Story.Stories}">
+            <CollectionView ItemsSource="{Binding CurrentStory.Stories}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Story">
                         <Grid Padding="5">

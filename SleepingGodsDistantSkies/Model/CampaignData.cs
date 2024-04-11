@@ -17,4 +17,5 @@ public partial class CampaignData : ObservableObject
 
     [ObservableProperty]
     private ObservableCollection<string> _keywords;
+
 }

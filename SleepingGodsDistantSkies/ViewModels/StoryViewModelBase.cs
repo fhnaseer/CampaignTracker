@@ -1,11 +1,15 @@
 ﻿namespace SleepingGodsDistantSkies.ViewModels;
 
-[QueryProperty(nameof(Story), nameof(Story))]
+[QueryProperty("CurrentStory", nameof(CurrentStory))]
+[QueryProperty("ParentStory", nameof(ParentStory))]
 [QueryProperty(nameof(Town), nameof(Town))]
 public abstract partial class StoryViewModelBase : ViewModelBase
 {
     [ObservableProperty]
-    private Story? _story;
+    private Story? _currentStory;
+
+    [ObservableProperty]
+    private Story? _parentStory;
 
     [ObservableProperty]
     private Town? _town;
@@ -13,6 +17,6 @@ public abstract partial class StoryViewModelBase : ViewModelBase
     [RelayCommand]
     private async Task GoToStory(Story story)
     {
-        await GoToStory(Town, story);
+        await GoToStory(Town, story, CurrentStory, false);
     }
 }

@@ -5,15 +5,18 @@
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
              x:DataType="viewModels:AddStoryViewModel"
-             Title="{Binding Story.Number}">
+             Title="{Binding CurrentStory.Number}">
     <ScrollView>
         <VerticalStackLayout>
-            <Label Text="Add story points," />
+            <Label Text="Add new story," />
             <Label Text="Number" />
             <Entry Text="{Binding StoryNumber}" />
             <Label Text="Required Keyword" />
             <Entry Text="{Binding RequiredKeyword}" />
             <Button Text="Add" Command="{Binding AddCommand}" />
+            <Label Text="Add existing story," />
+            <Picker ItemsSource="{Binding ExistingStories}" SelectedItem="{Binding SelectedExistingStory}" ItemDisplayBinding="{Binding Number}" />
+            <Button Text="Add existing story," Command="{Binding AddExistingStoryCommand}" />
             <Label Text="Explore story," />
             <Button Text="Explore" Command="{Binding ExploreCommand}" />
         </VerticalStackLayout>
