@@ -2,8 +2,20 @@
 
 namespace SleepingGodsDistantSkies.ViewModels;
 
-public partial class AddStoryViewModel : StoryViewModelBase
+[QueryProperty(nameof(Town), nameof(Town))]
+[QueryProperty("ParentStory", nameof(ParentStory))]
+[QueryProperty("CurrentStory", nameof(CurrentStory))]
+public partial class AddStoryViewModel : ViewModelBase
 {
+    [ObservableProperty]
+    private Town? _town;
+
+    [ObservableProperty]
+    private Story? _parentStory;
+
+    [ObservableProperty]
+    private Story? _currentStory;
+
     protected override void OnPropertyChanged(PropertyChangedEventArgs e)
     {
         base.OnPropertyChanged(e);

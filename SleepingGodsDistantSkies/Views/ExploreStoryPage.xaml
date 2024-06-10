@@ -8,6 +8,7 @@
              Title="{Binding CurrentStory.Number}">
     <ScrollView>
         <VerticalStackLayout>
+            <Picker ItemsSource="{Binding Statuses}" SelectedItem="{Binding Status}" />
             <CollectionView ItemsSource="{Binding CurrentStory.Stories}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Story">
@@ -26,7 +27,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Back to the Town" Command="{Binding GoToTownCommand}" CommandParameter="{Binding Town}" />
+            <Button Text="Explore" Command="{Binding GoBackToTownCommand}" CommandParameter="{Binding Town}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
