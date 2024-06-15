@@ -4,21 +4,27 @@ namespace SleepingGodsDistantSkies.StaticContent;
 
 internal static class FileHelpers
 {
-    private const string _prefix = "fhn_sleepingGods_distantSkies_";
+    private const string _prefix = "fhn_sleepingGods_";
     private const string _campaignsListFilename = _prefix + "campaignNames";
     private const string _campaignFilenamePrefix = _prefix + "campaign_";
 
-    public static CampaignData CreateCampaign(string campaignName)
+    public static CampaignData CreateCampaign(string campaignName, bool isDistantSkies)
     {
         string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignsListFilename + ".json");
         using Stream fileStream = File.Open(path, FileMode.Append);
         using StreamWriter fileWriter = new(fileStream);
         fileWriter.WriteLine(campaignName);
 
-        CampaignData campaign = new(campaignName);
+        CampaignData campaign = new(campaignName, isDistantSkies);
         SaveCampaign(campaign);
 
         return campaign;
+    }
+
+    public static void DeleteCampaign(string campaignName)
+    {
+        string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + campaignName + ".json");
+        File.Delete(path);
     }
 
     public static async Task<ObservableCollection<CampaignData>> GetCampaigns()

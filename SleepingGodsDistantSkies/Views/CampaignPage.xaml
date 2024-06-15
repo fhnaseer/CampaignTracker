@@ -24,6 +24,9 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <Button Text="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding CampaignData}" />
+            <Button Text="Add Town" Command="{Binding AddTownCommand}" />
+            <Label Text="Keywords" />
+            <CollectionView ItemsSource="{Binding CampaignData.Keywords}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

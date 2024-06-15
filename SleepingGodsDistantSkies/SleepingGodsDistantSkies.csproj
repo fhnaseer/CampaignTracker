@@ -75,6 +75,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\AddTownPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\CampaignPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

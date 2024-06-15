@@ -18,7 +18,14 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task StartCampaign()
     {
-        CampaignData campaignData = FileHelpers.CreateCampaign(NewCampaignName);
+        CampaignData campaignData = FileHelpers.CreateCampaign(NewCampaignName, true);
+        await LoadCampaign(campaignData);
+    }
+
+    [RelayCommand]
+    private async Task StartEmptyCampaign()
+    {
+        CampaignData campaignData = FileHelpers.CreateCampaign(NewCampaignName, false);
         await LoadCampaign(campaignData);
     }
 

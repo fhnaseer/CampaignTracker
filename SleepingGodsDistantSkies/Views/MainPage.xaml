@@ -8,7 +8,8 @@
     <ScrollView>
         <VerticalStackLayout>
             <Entry Text="{Binding NewCampaignName}" />
-            <Button Text="Start Campaign" Command="{Binding StartCampaignCommand}" />
+            <Button Text="Start Sleeping Gods Distant Skies" Command="{Binding StartCampaignCommand}" />
+            <Button Text="Start Empty Campaign" Command="{Binding StartEmptyCampaignCommand}" />
 
             <CollectionView ItemsSource="{Binding Campaigns}">
                 <CollectionView.ItemTemplate>

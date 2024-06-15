@@ -26,6 +26,12 @@ public partial class ExploreStoryViewModel : ViewModelBase
     [ObservableProperty]
     private Status _status;
 
+    [RelayCommand]
+    private async Task GoToStory(Story story)
+    {
+        await GoToStory(Town, story).ConfigureAwait(false);
+    }
+
     protected override Task GoBack()
     {
         if (CurrentStory is not null)

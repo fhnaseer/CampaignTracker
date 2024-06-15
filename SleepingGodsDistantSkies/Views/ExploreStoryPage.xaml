@@ -27,7 +27,12 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Explore" Command="{Binding GoBackToTownCommand}" CommandParameter="{Binding Town}" />
+            <Entry Text="{Binding Keyword}" />
+            <Button Text="Gain Keyword" Command="{Binding AddKeywordCommand}" />
+            <Button Text="Lose Keyword" Command="{Binding RemoveKeywordCommand}" />
+            <Button Text="Go Back" Command="{Binding GoBackToTownCommand}" CommandParameter="{Binding Town}" />
+            <Label Text="Keywords" />
+            <CollectionView ItemsSource="{Binding CampaignData.Keywords}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

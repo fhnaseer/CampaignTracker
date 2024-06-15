@@ -4,15 +4,7 @@ public enum Status
 {
     Unexplored,
     Explored,
+    FullyExplored,
     NotAvailable,
     Crossed
-}
-
-public enum ChallengeType
-{
-    Perception,
-    Moxxy,
-    Craft,
-    Strength,
-    Savvy
 }

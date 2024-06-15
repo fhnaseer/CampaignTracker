@@ -12,5 +12,8 @@ public partial class Story(string number) : ObservableObject
     private string? _requiredKeyword;
 
     [ObservableProperty]
+    private string? _unavailableKeyword;
+
+    [ObservableProperty]
     private Status _status;
 }

@@ -13,9 +13,11 @@
             <Entry Text="{Binding StoryNumber}" />
             <Label Text="Required Keyword" />
             <Entry Text="{Binding RequiredKeyword}" />
+            <Label Text="Unavailable Keyword" />
+            <Entry Text="{Binding UnavailableKeyword}" />
             <Button Text="Add" Command="{Binding AddCommand}" />
             <Label Text="Explore story," />
-            <Button Text="Explore" Command="{Binding ExploreCommand}" />
+            <Button Text="Explore" Command="{Binding GoBackCommand}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

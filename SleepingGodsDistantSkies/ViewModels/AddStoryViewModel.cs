@@ -17,6 +17,9 @@ public partial class AddStoryViewModel : ViewModelBase
     private string? _requiredKeyword;
 
     [ObservableProperty]
+    private string? _unavailableKeyword;
+
+    [ObservableProperty]
     private ObservableCollection<Story> _existingStories = [];
 
     [RelayCommand]
@@ -30,6 +33,7 @@ public partial class AddStoryViewModel : ViewModelBase
             story = new(StoryNumber)
             {
                 RequiredKeyword = RequiredKeyword,
+                UnavailableKeyword = UnavailableKeyword,
             };
         }
 

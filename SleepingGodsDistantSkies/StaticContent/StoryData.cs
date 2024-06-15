@@ -49,7 +49,6 @@ internal static class StoryData
     private static Town GetTundra()
     {
         Town town = new("Tundra", 16, 17);
-        town.Stories.Add(new("28"));
         town.Stories.Add(new("29"));
         town.Stories.Add(new("43"));
         town.Stories.Add(new("56"));
@@ -76,7 +75,7 @@ internal static class StoryData
 
     private static Town GetStormlockCity()
     {
-        Town town = new("Tharkolm", 8, 9);
+        Town town = new("Stormlock City", 8, 9);
         town.Stories.Add(new("17"));
         town.Stories.Add(new("21"));
         town.Stories.Add(new("36"));

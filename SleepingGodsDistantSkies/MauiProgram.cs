@@ -19,6 +19,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainViewModel>();
         builder.Services.AddSingleton<CampaignPage>();
         builder.Services.AddSingleton<CampaignViewModel>();
+        builder.Services.AddSingleton<AddTownPage>();
+        builder.Services.AddSingleton<AddTownViewModel>();
         builder.Services.AddSingleton<ExploreTownPage>();
         builder.Services.AddSingleton<ExploreTownViewModel>();
         builder.Services.AddSingleton<AddStoryPage>();

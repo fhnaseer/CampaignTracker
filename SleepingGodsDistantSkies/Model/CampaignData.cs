@@ -2,12 +2,18 @@
 
 public partial class CampaignData : ObservableObject
 {
-    public CampaignData(string name)
+    public CampaignData(string name, bool isDistantSkies)
     {
         Name = name;
-        Towns = StaticContent.StoryData.GetTowns();
+        Towns = isDistantSkies ? StaticContent.StoryData.GetTowns() : [];
         Keywords = [];
         Stories = [];
+
+        foreach (Town town in Towns)
+        {
+            foreach (Story story in town.Stories)
+                Stories.Add(story.Number, story);
+        }
     }
 
     [ObservableProperty]
