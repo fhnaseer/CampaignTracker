@@ -5,14 +5,14 @@ public partial class CampaignData : ObservableObject
     public CampaignData(string name, bool isDistantSkies)
     {
         Name = name;
-        Towns = isDistantSkies ? StaticContent.StoryData.GetTowns() : [];
+        Towns = isDistantSkies ? StaticContent.StoryData.GetDistantSkiesTowns() : [];
         Keywords = [];
         Stories = [];
 
         foreach (Town town in Towns)
         {
             foreach (Story story in town.Stories)
-                Stories.Add(story.Number, story);
+                Stories.Add(story);
         }
     }
 
@@ -25,5 +25,14 @@ public partial class CampaignData : ObservableObject
     [ObservableProperty]
     private ObservableCollection<string> _keywords;
 
-    public Dictionary<string, Story> Stories { get; set; }
+    [ObservableProperty]
+    private ObservableCollection<Story> _stories = [];
+
+    [ObservableProperty]
+    private bool _isDistantSkies;
+
+    public override string ToString()
+    {
+        return Name ?? string.Empty;
+    }
 }

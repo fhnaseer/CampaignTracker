@@ -13,7 +13,7 @@ public partial class CampaignViewModel : ViewModelBase
             { nameof(Town), town },
             { nameof(CampaignData), CampaignData ?? new CampaignData("", true) }
         };
-        await Shell.Current.GoToAsync(nameof(ExploreTownViewModel), state);
+        await Shell.Current.GoToAsync(nameof(ExploreTownViewModel), state).ConfigureAwait(false); ;
     }
 
     [RelayCommand]
@@ -23,6 +23,6 @@ public partial class CampaignViewModel : ViewModelBase
         {
             { nameof(CampaignData), CampaignData ?? new CampaignData("", true) }
         };
-        await Shell.Current.GoToAsync(nameof(AddTownViewModel), state);
+        await Shell.Current.GoToAsync(nameof(AddTownViewModel), state).ConfigureAwait(false); ;
     }
 }

@@ -40,11 +40,18 @@ internal static class FileHelpers
             if (!File.Exists(path))
                 continue;
 
-            using Stream fileStream = File.Open(path, FileMode.Open);
-            CampaignData? campaign = await JsonSerializer.DeserializeAsync<CampaignData>(fileStream).ConfigureAwait(false);
+            try
+            {
+                using Stream fileStream = File.Open(path, FileMode.Open);
+                CampaignData? campaign = await JsonSerializer.DeserializeAsync<CampaignData>(fileStream).ConfigureAwait(false);
 
-            if (campaign is not null)
-                campaigns.Add(campaign);
+                if (campaign is not null)
+                    campaigns.Add(campaign);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         return campaigns;

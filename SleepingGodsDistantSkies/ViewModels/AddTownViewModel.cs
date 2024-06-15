@@ -14,7 +14,7 @@ public partial class AddTownViewModel : ViewModelBase
         if (string.IsNullOrEmpty(Name) || string.IsNullOrWhiteSpace(Stories))
             return;
 
-        Town town = new(Name, 1, 2);
+        Town town = new(Name);
         string[] stories = Stories.Split(',', StringSplitOptions.RemoveEmptyEntries);
         foreach (string story in stories)
             town.Stories.Add(new Story(story));
@@ -25,6 +25,6 @@ public partial class AddTownViewModel : ViewModelBase
 
     protected override async Task GoBack()
     {
-        await Shell.Current.GoToAsync("..");
+        await Shell.Current.GoToAsync("..").ConfigureAwait(false); ;
     }
 }

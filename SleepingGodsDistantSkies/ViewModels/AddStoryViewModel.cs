@@ -28,14 +28,12 @@ public partial class AddStoryViewModel : ViewModelBase
         if (CampaignData is null || Story is null || StoryNumber is null)
             return;
 
-        if (!CampaignData.Stories.TryGetValue(StoryNumber, out Story? story))
+        Story? story = null;// CampaignData.Stories.FirstOrDefault(s => s.Number == StoryNumber);
+        story ??= new(StoryNumber)
         {
-            story = new(StoryNumber)
-            {
-                RequiredKeyword = RequiredKeyword?.ToUpper(),
-                UnavailableKeyword = UnavailableKeyword?.ToUpper(),
-            };
-        }
+            RequiredKeyword = RequiredKeyword?.ToUpper(),
+            UnavailableKeyword = UnavailableKeyword?.ToUpper(),
+        };
 
         Story.Stories.Add(story);
         StoryNumber = RequiredKeyword = null;
@@ -47,7 +45,7 @@ public partial class AddStoryViewModel : ViewModelBase
         if (Story is not null)
         {
             Story.Status = Status.Explored;
-            await GoToStory(Town, Story);
+            await GoToStory(Town, Story).ConfigureAwait(false); ;
         }
     }
 }

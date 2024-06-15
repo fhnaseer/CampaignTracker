@@ -15,27 +15,49 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private ObservableCollection<CampaignData> _campaigns;
 
+    [ObservableProperty]
+    private CampaignData? _selectedCampaign;
+
     [RelayCommand]
-    private async Task StartCampaign()
+    private async Task StartDistantSkiesCampaign()
     {
-        CampaignData campaignData = FileHelpers.CreateCampaign(NewCampaignName, true);
-        await LoadCampaign(campaignData);
+        if (string.IsNullOrWhiteSpace(NewCampaignName))
+            return;
+
+        SelectedCampaign = FileHelpers.CreateCampaign(NewCampaignName, true);
+        await LoadCampaign().ConfigureAwait(false); ;
     }
 
     [RelayCommand]
     private async Task StartEmptyCampaign()
     {
-        CampaignData campaignData = FileHelpers.CreateCampaign(NewCampaignName, false);
-        await LoadCampaign(campaignData);
+        if (string.IsNullOrWhiteSpace(NewCampaignName))
+            return;
+
+        SelectedCampaign = FileHelpers.CreateCampaign(NewCampaignName, false);
+        await LoadCampaign().ConfigureAwait(false); ;
     }
 
     [RelayCommand]
-    private async Task LoadCampaign(CampaignData campaignData)
+    private async Task LoadCampaign()
     {
+        if (SelectedCampaign == null)
+            return;
+
         Dictionary<string, object> state = new()
         {
-            { nameof(CampaignData), campaignData}
+            { nameof(CampaignData), SelectedCampaign }
         };
-        await Shell.Current.GoToAsync(nameof(CampaignViewModel), state);
+        await Shell.Current.GoToAsync(nameof(CampaignViewModel), state).ConfigureAwait(false); ;
+    }
+
+    [RelayCommand]
+    private async Task DeleteCampaign()
+    {
+        if (SelectedCampaign == null || SelectedCampaign.Name == null)
+            return;
+
+        FileHelpers.DeleteCampaign(SelectedCampaign.Name);
+        Campaigns = await FileHelpers.GetCampaigns().ConfigureAwait(false);
     }
 }

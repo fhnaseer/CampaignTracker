@@ -2,20 +2,8 @@
 
 internal static class StoryData
 {
-    public static ObservableCollection<Town> GetTowns()
+    public static ObservableCollection<Town> GetDistantSkiesTowns()
     {
-        //Town serracksEdge = new("Serracks Edge", "Serracks_edge.png", 14, 15);
-        //Town tundra = new("Tundra", "tundra.png", 16, 17);
-        //Town godEye = new("God Eye", "god_eye.png", 16, 17);
-
-        //Town stormlockCity = new("Stormlock City", "stormlock_city.png", 8, 9);
-        //Town tharkolm = new("Tharkolm", "tharkolm.png", 10, 11);
-        //Town milius = new("Milius", "milius.png", 12, 13);
-
-        //Town locifa = new("Locifa", "locifa.png", 6, 7);
-        //Town henrikCamp = GetHenrikCamp();
-        //Town thistletown = new("Thistletown", "thistletown.png", 4, 5);
-
         Town serracksEdge = GetSerracksEdge();
         Town tundra = GetTundra();
         Town godEye = GetGodEye();
@@ -33,7 +21,7 @@ internal static class StoryData
 
     private static Town GetSerracksEdge()
     {
-        Town town = new("Serracks Edge", 14, 15);
+        Town town = new("Serracks Edge");
         town.Stories.Add(new("25"));
         town.Stories.Add(new("37"));
         town.Stories.Add(new("41"));
@@ -48,7 +36,7 @@ internal static class StoryData
 
     private static Town GetTundra()
     {
-        Town town = new("Tundra", 16, 17);
+        Town town = new("Tundra");
         town.Stories.Add(new("29"));
         town.Stories.Add(new("43"));
         town.Stories.Add(new("56"));
@@ -61,7 +49,7 @@ internal static class StoryData
 
     private static Town GetGodEye()
     {
-        Town town = new("God Eye", 16, 17);
+        Town town = new("God Eye");
         town.Stories.Add(new("19"));
         town.Stories.Add(new("30"));
         town.Stories.Add(new("42"));
@@ -75,7 +63,7 @@ internal static class StoryData
 
     private static Town GetStormlockCity()
     {
-        Town town = new("Stormlock City", 8, 9);
+        Town town = new("Stormlock City");
         town.Stories.Add(new("17"));
         town.Stories.Add(new("21"));
         town.Stories.Add(new("36"));
@@ -93,7 +81,7 @@ internal static class StoryData
 
     private static Town GetTharkolm()
     {
-        Town town = new("Tharkolm", 10, 11);
+        Town town = new("Tharkolm");
         town.Stories.Add(new("15"));
         town.Stories.Add(new("23"));
         town.Stories.Add(new("24"));
@@ -111,7 +99,7 @@ internal static class StoryData
 
     private static Town GetMilius()
     {
-        Town town = new("Milius", 12, 13);
+        Town town = new("Milius");
         town.Stories.Add(new("16"));
         town.Stories.Add(new("20"));
         town.Stories.Add(new("31"));
@@ -130,7 +118,7 @@ internal static class StoryData
 
     private static Town GetLocifa()
     {
-        Town town = new("Locifa", 6, 7);
+        Town town = new("Locifa");
         town.Stories.Add(new("14"));
         town.Stories.Add(new("26"));
         town.Stories.Add(new("39"));
@@ -147,7 +135,7 @@ internal static class StoryData
     private static Town GetHenrikCamp()
     {
         //Town henrikCamp = new("Henrik Camp", "henrik_camp.png", 2, 3);
-        Town town = new("Henrik Camp", 2, 3);
+        Town town = new("Henrik Camp");
         town.Stories.Add(new("1"));
         town.Stories.Add(new("2"));
         town.Stories.Add(new("4"));
@@ -164,7 +152,7 @@ internal static class StoryData
 
     private static Town GetThistletown()
     {
-        Town town = new("Thistletown", 4, 5);
+        Town town = new("Thistletown");
         town.Stories.Add(new("13"));
         town.Stories.Add(new("22"));
         town.Stories.Add(new("27"));

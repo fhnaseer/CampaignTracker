@@ -7,25 +7,17 @@
              x:DataType="viewModels:MainViewModel">
     <ScrollView>
         <VerticalStackLayout>
-            <Entry Text="{Binding NewCampaignName}" />
-            <Button Text="Start Sleeping Gods Distant Skies" Command="{Binding StartCampaignCommand}" />
-            <Button Text="Start Empty Campaign" Command="{Binding StartEmptyCampaignCommand}" />
+            <Label Margin="5" Text="Campaign Name" />
+            <Entry Margin="5" Text="{Binding NewCampaignName}" />
+            <Button Margin="5" Text="Start Sleeping Gods Distant Skies" Command="{Binding StartDistantSkiesCampaignCommand}" />
+            <Button Margin="5" Text="Start Empty Campaign" Command="{Binding StartEmptyCampaignCommand}" />
 
-            <CollectionView ItemsSource="{Binding Campaigns}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:CampaignData">
-                        <Grid Padding="5">
-                            <Frame>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel}}, Path=LoadCampaignCommand}" CommandParameter="{Binding .}"/>
-                                </Frame.GestureRecognizers>
-                                <Label Text="{Binding Name}" />
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
+            <Label/>
+            <Label/>
+            <Label Margin="5" Text="Existing Campaigns"/>
+            <Picker Margin="5" ItemsSource="{Binding Campaigns}" SelectedItem="{Binding SelectedCampaign}" />
+            <Button Margin="5" Text="Load" Command="{Binding LoadCampaignCommand}" />
+            <Button Margin="5" Text="Delete" Command="{Binding DeleteCampaignCommand}" />
         </VerticalStackLayout> 
     </ScrollView>
 

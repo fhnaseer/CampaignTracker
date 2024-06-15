@@ -14,7 +14,7 @@ public abstract partial class ViewModelBase : ObservableObject
     [RelayCommand]
     protected virtual async Task GoBack()
     {
-        await Task.CompletedTask.ConfigureAwait(false);// Shell.Current.GoToAsync("..");
+        await Task.CompletedTask.ConfigureAwait(false);// Shell.Current.GoToAsync("..").ConfigureAwait(false);;
     }
 
     [RelayCommand]

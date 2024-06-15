@@ -16,4 +16,9 @@ public partial class Story(string number) : ObservableObject
 
     [ObservableProperty]
     private Status _status;
+
+    public override int GetHashCode()
+    {
+        return Number.GetHashCode();
+    }
 }
