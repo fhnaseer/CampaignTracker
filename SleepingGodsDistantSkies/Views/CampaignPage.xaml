@@ -8,25 +8,37 @@
              Title="{Binding CampaignData.Name}">
     <ScrollView>
         <VerticalStackLayout>
+            <Label Margin="10,10,10,0" Text="Towns" FontAttributes="Bold" />
             <CollectionView ItemsSource="{Binding CampaignData.Towns}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Town">
-                        <Grid Padding="5">
+                        <Grid Padding="10,10,10,0">
                             <Frame>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CampaignViewModel}}, Path=GoToTownCommand}" CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                                 <Label Text="{Binding Name}" />
-                                <!--<Image Source="{Binding Image}" WidthRequest="75" />-->
                             </Frame>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding CampaignData}" />
-            <Button Text="Add Town" Command="{Binding AddTownCommand}" />
-            <Label Text="Keywords" />
-            <CollectionView ItemsSource="{Binding CampaignData.Keywords}" />
+            <Button Margin="10,10,10,0" Text="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding CampaignData}" />
+            <Button Margin="10,10,10,0" Text="Add Town" Command="{Binding AddTownCommand}" />
+
+            <Label />
+            <Label />
+
+            <Label Margin="10" Text="Keywords" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding CampaignData.Keywords}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Grid Padding="10,0,10,10">
+                            <Entry Text="{Binding}" IsReadOnly="True" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

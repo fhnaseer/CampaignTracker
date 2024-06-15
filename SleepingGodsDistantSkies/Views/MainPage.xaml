@@ -7,17 +7,19 @@
              x:DataType="viewModels:MainViewModel">
     <ScrollView>
         <VerticalStackLayout>
-            <Label Margin="5" Text="Campaign Name" />
-            <Entry Margin="5" Text="{Binding NewCampaignName}" />
-            <Button Margin="5" Text="Start Sleeping Gods Distant Skies" Command="{Binding StartDistantSkiesCampaignCommand}" />
-            <Button Margin="5" Text="Start Empty Campaign" Command="{Binding StartEmptyCampaignCommand}" />
+            <Label Margin="10,10,10,0" Text="New Campaign" FontAttributes="Bold" />
+            <Label Margin="10,10,10,0" Text="Campaign Name" />
+            <Entry Margin="10,10,10,0" Text="{Binding NewCampaignName}" />
+            <Button Margin="10,10,10,0" Text="Start Distant Skies Campaign" Command="{Binding StartDistantSkiesCampaignCommand}" />
+            <Button Margin="10,10,10,0" Text="Start Empty Campaign" Command="{Binding StartEmptyCampaignCommand}" />
 
             <Label/>
             <Label/>
-            <Label Margin="5" Text="Existing Campaigns"/>
-            <Picker Margin="5" ItemsSource="{Binding Campaigns}" SelectedItem="{Binding SelectedCampaign}" />
-            <Button Margin="5" Text="Load" Command="{Binding LoadCampaignCommand}" />
-            <Button Margin="5" Text="Delete" Command="{Binding DeleteCampaignCommand}" />
+
+            <Label Margin="10,10,10,0" Text="Existing Campaigns" FontAttributes="Bold"/>
+            <Picker Margin="10,10,10,0" ItemsSource="{Binding Campaigns}" SelectedItem="{Binding SelectedCampaign}" />
+            <Button Margin="10,10,10,0" Text="Load" Command="{Binding LoadCampaignCommand}" />
+            <Button Margin="10" Text="Delete" Command="{Binding DeleteCampaignCommand}" />
         </VerticalStackLayout> 
     </ScrollView>
 

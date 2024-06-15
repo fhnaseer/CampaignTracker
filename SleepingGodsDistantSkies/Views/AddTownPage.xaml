@@ -5,21 +5,26 @@
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
              x:DataType="viewModels:AddTownViewModel"
-             Title="AddTownPage">
+             Title="Add Town">
     <ScrollView>
         <VerticalStackLayout>
-            <Label Text="Add Town" />
-            <Label Text="Name" />
-            <Entry Text="{Binding Name}" />
-            <Label Text="Stories (Comma Seperated)" />
-            <Entry Text="{Binding Stories}" />
-            <Button Text="Add" Command="{Binding AddCommand}" />
-            <Button Text="Explore" Command="{Binding GoBackCommand}" />
-            <Label Text="Available Towns" />
+            <Label Margin="10,10,10,0" Text="Name" />
+            <Entry Margin="10,10,10,0" Text="{Binding Name}" />
+            <Label Margin="10,10,10,0" Text="Stories (e.g. 1,22,32,87)" />
+            <Entry Margin="10,10,10,0" Text="{Binding Stories}" />
+            <Button Margin="10,10,10,0" Text="Add" Command="{Binding AddCommand}" />
+            <Button Margin="10,10,10,0" Text="Explore" Command="{Binding GoBackCommand}" />
+
+            <Label />
+            <Label />
+
+            <Label Margin="10,10,10,10" Text="Available Towns" FontAttributes="Bold" />
             <CollectionView ItemsSource="{Binding CampaignData.Towns}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Town">
-                        <Label Text="{Binding Name}" />
+                        <Grid Padding="10,0,10,10">
+                            <Entry Text="{Binding Name}" IsReadOnly="True" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

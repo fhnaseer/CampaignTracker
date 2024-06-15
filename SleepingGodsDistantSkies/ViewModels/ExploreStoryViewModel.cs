@@ -32,17 +32,21 @@ public partial class ExploreStoryViewModel : ViewModelBase
         await GoToStory(Town, story).ConfigureAwait(false);
     }
 
-    protected override Task GoBack()
+    protected override async Task GoBack()
     {
         if (Story is not null)
             Story.Status = Status;
 
-        return base.GoBack();
+        if (Town is not null)
+            await GoBackToTown(Town).ConfigureAwait(false);
     }
 
     [RelayCommand]
     private async Task GoBackToTown(Town town)
     {
+        if (Story is not null)
+            Story.Status = Status;
+
         Dictionary<string, object?> state = new()
         {
             { nameof(Town), town },

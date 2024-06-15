@@ -7,4 +7,9 @@ public partial class Town(string name) : ObservableObject
 
     [ObservableProperty]
     private ObservableCollection<Story> _stories = [];
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }

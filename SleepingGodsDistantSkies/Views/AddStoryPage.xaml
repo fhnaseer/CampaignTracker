@@ -8,16 +8,19 @@
              Title="{Binding Story.Number}">
     <ScrollView>
         <VerticalStackLayout>
-            <Label Text="Add new story," />
-            <Label Text="Number" />
-            <Entry Text="{Binding StoryNumber}" />
-            <Label Text="Required Keyword" />
-            <Entry Text="{Binding RequiredKeyword}" />
-            <Label Text="Unavailable Keyword" />
-            <Entry Text="{Binding UnavailableKeyword}" />
-            <Button Text="Add" Command="{Binding AddCommand}" />
-            <Label Text="Explore story," />
-            <Button Text="Explore" Command="{Binding ExploreCommand}" />
+            <Label Margin="10,10,10,0" Text="Add Story" FontAttributes="Bold" />
+            <Label Margin="10,10,10,0" Text="Number" />
+            <Entry Margin="10,10,10,0" Text="{Binding StoryNumber}" />
+            <Label Margin="10,10,10,0" Text="Requires Keyword" />
+            <Entry Margin="10,10,10,0" Text="{Binding RequiredKeyword}" />
+            <Label Margin="10,10,10,0" Text="Not Available Keyword" />
+            <Entry Margin="10,10,10,0" Text="{Binding UnavailableKeyword}" />
+            <Button Margin="10,10,10,0" Text="Add" Command="{Binding AddCommand}" />
+            
+            <Label />
+            <Label />
+
+            <Button Margin="10" Text="Explore" Command="{Binding ExploreCommand}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

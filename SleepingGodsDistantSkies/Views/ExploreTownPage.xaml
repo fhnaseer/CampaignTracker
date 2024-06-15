@@ -8,7 +8,8 @@
              Title="{Binding Town.Name}">
     <ScrollView>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding Town.Stories}">
+            <Label Margin="5" Text="Stories" />
+            <CollectionView Margin="5" ItemsSource="{Binding Town.Stories}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Story">
                         <Grid Padding="5">
@@ -20,13 +21,17 @@
                                 <StackLayout>
                                     <Label Text="{Binding Number}" />
                                     <Label Text="{Binding Status}" />
+                                    <Label Text="Requires Keyword" />
+                                    <Label Text="{Binding RequiredKeyword}" />
+                                    <Label Text="Unavailable Keyword" />
+                                    <Label Text="{Binding UnavailableKeyword}" />
                                 </StackLayout>
                             </Frame>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <!--<Button Text="Back" Command="{Binding GoBackCommand}" />-->
+            <Button Text="Back" Command="{Binding GoBackCommand}" />
             <Button Text="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding CampaignData}" />
         </VerticalStackLayout>
     </ScrollView>
