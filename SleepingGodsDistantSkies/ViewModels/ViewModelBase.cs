@@ -39,10 +39,10 @@ public abstract partial class ViewModelBase : ObservableObject
         if (story.Status is Status.NotAvailable or Status.Crossed)
             return;
 
-        if (!string.IsNullOrWhiteSpace(story.RequiredKeyword) && !CampaignData.Keywords.Contains(story.RequiredKeyword))
+        if (!string.IsNullOrWhiteSpace(story.RequiredKeyword) && !CampaignData.Keywords.Contains(story.RequiredKeyword.ToUpper()))
             return;
 
-        if (!string.IsNullOrWhiteSpace(story.UnavailableKeyword) && CampaignData.Keywords.Contains(story.UnavailableKeyword))
+        if (!string.IsNullOrWhiteSpace(story.UnavailableKeyword) && CampaignData.Keywords.Contains(story.UnavailableKeyword.ToUpper()))
             return;
 
         Dictionary<string, object?> state = new()

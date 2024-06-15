@@ -32,8 +32,8 @@ public partial class AddStoryViewModel : ViewModelBase
         {
             story = new(StoryNumber)
             {
-                RequiredKeyword = RequiredKeyword,
-                UnavailableKeyword = UnavailableKeyword,
+                RequiredKeyword = RequiredKeyword?.ToUpper(),
+                UnavailableKeyword = UnavailableKeyword?.ToUpper(),
             };
         }
 

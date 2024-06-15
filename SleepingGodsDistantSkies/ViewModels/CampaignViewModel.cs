@@ -11,7 +11,7 @@ public partial class CampaignViewModel : ViewModelBase
         Dictionary<string, object> state = new()
         {
             { nameof(Town), town },
-            { nameof(CampaignData), CampaignData ?? new CampaignData("") }
+            { nameof(CampaignData), CampaignData ?? new CampaignData("", true) }
         };
         await Shell.Current.GoToAsync(nameof(ExploreTownViewModel), state);
     }
@@ -21,7 +21,7 @@ public partial class CampaignViewModel : ViewModelBase
     {
         Dictionary<string, object> state = new()
         {
-            { nameof(CampaignData), CampaignData ?? new CampaignData("") }
+            { nameof(CampaignData), CampaignData ?? new CampaignData("", true) }
         };
         await Shell.Current.GoToAsync(nameof(AddTownViewModel), state);
     }

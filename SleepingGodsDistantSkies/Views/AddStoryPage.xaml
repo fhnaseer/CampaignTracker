@@ -17,7 +17,7 @@
             <Entry Text="{Binding UnavailableKeyword}" />
             <Button Text="Add" Command="{Binding AddCommand}" />
             <Label Text="Explore story," />
-            <Button Text="Explore" Command="{Binding GoBackCommand}" />
+            <Button Text="Explore" Command="{Binding ExploreCommand}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
