@@ -1,14 +1,14 @@
 ﻿namespace SleepingGodsDistantSkies.ViewModels;
 
 [QueryProperty(nameof(Town), nameof(Town))]
-[QueryProperty("CurrentStory", nameof(CurrentStory))]
+[QueryProperty(nameof(Story), nameof(Story))]
 public partial class AddStoryViewModel : ViewModelBase
 {
     [ObservableProperty]
     private Town? _town;
 
     [ObservableProperty]
-    private Story? _currentStory;
+    private Story? _story;
 
     [ObservableProperty]
     private string? _storyNumber;
@@ -25,7 +25,7 @@ public partial class AddStoryViewModel : ViewModelBase
     [RelayCommand]
     private void Add()
     {
-        if (CampaignData is null || CurrentStory is null || StoryNumber is null)
+        if (CampaignData is null || Story is null || StoryNumber is null)
             return;
 
         if (!CampaignData.Stories.TryGetValue(StoryNumber, out Story? story))
@@ -37,17 +37,17 @@ public partial class AddStoryViewModel : ViewModelBase
             };
         }
 
-        CurrentStory.Stories.Add(story);
+        Story.Stories.Add(story);
         StoryNumber = RequiredKeyword = null;
     }
 
     [RelayCommand]
     private async Task Explore()
     {
-        if (CurrentStory is not null)
+        if (Story is not null)
         {
-            CurrentStory.Status = Status.Explored;
-            await GoToStory(Town, CurrentStory);
+            Story.Status = Status.Explored;
+            await GoToStory(Town, Story);
         }
     }
 }

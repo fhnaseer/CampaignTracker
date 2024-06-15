@@ -3,21 +3,21 @@
 namespace SleepingGodsDistantSkies.ViewModels;
 
 [QueryProperty(nameof(Town), nameof(Town))]
-[QueryProperty("CurrentStory", nameof(CurrentStory))]
+[QueryProperty(nameof(Story), nameof(Story))]
 public partial class ExploreStoryViewModel : ViewModelBase
 {
     [ObservableProperty]
     private Town? _town;
 
     [ObservableProperty]
-    private Story? _currentStory;
+    private Story? _story;
 
     protected override void OnPropertyChanged(PropertyChangedEventArgs e)
     {
         base.OnPropertyChanged(e);
 
-        if (e.PropertyName == nameof(CurrentStory) && CurrentStory is not null)
-            Status = CurrentStory.Status;
+        if (e.PropertyName == nameof(Story) && Story is not null)
+            Status = Story.Status;
     }
 
     [ObservableProperty]
@@ -34,8 +34,8 @@ public partial class ExploreStoryViewModel : ViewModelBase
 
     protected override Task GoBack()
     {
-        if (CurrentStory is not null)
-            CurrentStory.Status = Status;
+        if (Story is not null)
+            Story.Status = Status;
 
         return base.GoBack();
     }

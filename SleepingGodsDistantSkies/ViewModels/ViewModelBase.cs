@@ -48,7 +48,7 @@ public abstract partial class ViewModelBase : ObservableObject
         Dictionary<string, object?> state = new()
         {
             { nameof(Town), town },
-            { "CurrentStory", story },
+            { nameof(Story), story },
             { nameof(CampaignData), CampaignData}
         };
 

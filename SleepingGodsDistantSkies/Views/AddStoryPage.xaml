@@ -5,7 +5,7 @@
              xmlns:viewModels="clr-namespace:SleepingGodsDistantSkies.ViewModels"
              xmlns:model="clr-namespace:SleepingGodsDistantSkies.Model"
              x:DataType="viewModels:AddStoryViewModel"
-             Title="{Binding CurrentStory.Number}">
+             Title="{Binding Story.Number}">
     <ScrollView>
         <VerticalStackLayout>
             <Label Text="Add new story," />
