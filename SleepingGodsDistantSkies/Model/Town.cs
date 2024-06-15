@@ -12,4 +12,10 @@ public partial class Town(string name) : ObservableObject
     {
         return Name;
     }
+
+    public void PopulateStories(List<Story> stories)
+    {
+        foreach (Story story in Stories)
+            story.PopulateStories(stories);
+    }
 }

@@ -21,4 +21,12 @@ public partial class Story(string number) : ObservableObject
     {
         return Number.GetHashCode();
     }
+
+    public void PopulateStories(List<Story> stories)
+    {
+        stories.Add(this);
+
+        foreach (Story story in Stories)
+            story.PopulateStories(stories);
+    }
 }

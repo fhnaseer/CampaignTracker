@@ -12,6 +12,12 @@ public partial class ExploreStoryViewModel : ViewModelBase
     [ObservableProperty]
     private Story? _story;
 
+    [ObservableProperty]
+    private ObservableCollection<Status> _statuses = new(Enum.GetValues(typeof(Status)).Cast<Status>());
+
+    [ObservableProperty]
+    private Status _status;
+
     protected override void OnPropertyChanged(PropertyChangedEventArgs e)
     {
         base.OnPropertyChanged(e);
@@ -20,25 +26,13 @@ public partial class ExploreStoryViewModel : ViewModelBase
             Status = Story.Status;
     }
 
-    [ObservableProperty]
-    private ObservableCollection<Status> _statuses = new(Enum.GetValues(typeof(Status)).Cast<Status>());
-
-    [ObservableProperty]
-    private Status _status;
-
     [RelayCommand]
     private async Task GoToStory(Story story)
-    {
-        await GoToStory(Town, story).ConfigureAwait(false);
-    }
-
-    protected override async Task GoBack()
     {
         if (Story is not null)
             Story.Status = Status;
 
-        if (Town is not null)
-            await GoBackToTown(Town).ConfigureAwait(false);
+        await GoToStory(Town, story).ConfigureAwait(false);
     }
 
     [RelayCommand]

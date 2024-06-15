@@ -8,31 +8,45 @@
              Title="{Binding Town.Name}">
     <ScrollView>
         <VerticalStackLayout>
-            <Label Margin="5" Text="Stories" />
-            <CollectionView Margin="5" ItemsSource="{Binding Town.Stories}">
+            <Label Margin="10" Text="Stories" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding Town.Stories}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Story">
-                        <Grid Padding="5">
+                        <Grid Padding="10,0,10,10">
                             <Frame>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExploreTownViewModel}}, Path=GoToStoryCommand}" 
                                                           CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                                 <StackLayout>
-                                    <Label Text="{Binding Number}" />
-                                    <Label Text="{Binding Status}" />
-                                    <Label Text="Requires Keyword" />
-                                    <Label Text="{Binding RequiredKeyword}" />
-                                    <Label Text="Unavailable Keyword" />
-                                    <Label Text="{Binding UnavailableKeyword}" />
+                                    <Label Margin="5,5,5,0" Text="{Binding Number}" />
+                                    <Label Margin="5,5,5,0" Text="{Binding Status}" />
+                                    <Label Margin="5,5,5,0" Text="Requires Keyword" />
+                                    <Label Margin="5,5,5,0" Text="{Binding RequiredKeyword}" />
+                                    <Label Margin="5,5,5,0" Text="Unavailable Keyword" />
+                                    <Label Margin="5" Text="{Binding UnavailableKeyword}" />
                                 </StackLayout>
                             </Frame>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Back" Command="{Binding GoBackCommand}" />
-            <Button Text="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding CampaignData}" />
+            <Button Margin="10,10,10,0" Text="Back" Command="{Binding GoBackCommand}" />
+            <Button Margin="10" Text="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding CampaignData}" />
+
+            <Label/>
+            <Label/>
+
+            <Label Margin="10" Text="Keywords" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding CampaignData.Keywords}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Grid Padding="10,0,10,10">
+                            <Entry Text="{Binding}" IsReadOnly="True" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -21,14 +21,17 @@ public abstract partial class ViewModelBase : ObservableObject
     protected void AddKeyword()
     {
         if (!string.IsNullOrWhiteSpace(Keyword))
-            CampaignData?.Keywords.Add(Keyword);
+        {
+            _ = (CampaignData?.Keywords.Remove(Keyword.ToUpper()));
+            CampaignData?.Keywords.Add(Keyword.ToUpper());
+        }
     }
 
     [RelayCommand]
     protected void RemoveKeyword()
     {
         if (!string.IsNullOrWhiteSpace(Keyword))
-            _ = (CampaignData?.Keywords.Remove(Keyword));
+            _ = (CampaignData?.Keywords.Remove(Keyword.ToUpper()));
     }
 
     protected async Task GoToStory(Town? town, Story? story)
@@ -53,7 +56,7 @@ public abstract partial class ViewModelBase : ObservableObject
         };
 
         string viewModeName = story.Status == Status.Unexplored ? nameof(AddStoryViewModel) : nameof(ExploreStoryViewModel);
-        story.Status = Status.Explored;
+        story.Status = Status.NotVisited;
         await Shell.Current.GoToAsync(viewModeName, state).ConfigureAwait(false);
     }
 

@@ -25,7 +25,8 @@ public partial class AddStoryViewModel : ViewModelBase
         if (CampaignData is null || Story is null || StoryNumber is null)
             return;
 
-        Story? story = CampaignData.Stories.FirstOrDefault(s => s.Number == StoryNumber);
+        List<Story> stories = CampaignData.GetAllStories();
+        Story? story = stories.FirstOrDefault(s => s.Number == StoryNumber);
         story ??= new(StoryNumber)
         {
             RequiredKeyword = RequiredKeyword?.ToUpper(),
@@ -41,7 +42,7 @@ public partial class AddStoryViewModel : ViewModelBase
     {
         if (Story is not null)
         {
-            Story.Status = Status.Explored;
+            Story.Status = Status.NotVisited;
             await GoToStory(Town, Story).ConfigureAwait(false); ;
         }
     }

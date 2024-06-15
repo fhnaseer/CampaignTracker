@@ -7,13 +7,7 @@ public partial class CampaignData : ObservableObject
         Name = name;
         Towns = isDistantSkies ? StaticContent.StoryData.GetDistantSkiesTowns() : [];
         Keywords = [];
-        Stories = [];
-
-        foreach (Town town in Towns)
-        {
-            foreach (Story story in town.Stories)
-                Stories.Add(story);
-        }
+        AdditionalStories = [];
     }
 
     [ObservableProperty]
@@ -26,7 +20,7 @@ public partial class CampaignData : ObservableObject
     private ObservableCollection<string> _keywords;
 
     [ObservableProperty]
-    private ObservableCollection<Story> _stories = [];
+    private ObservableCollection<Story> _additionalStories = [];
 
     [ObservableProperty]
     private bool _isDistantSkies;
@@ -34,5 +28,15 @@ public partial class CampaignData : ObservableObject
     public override string ToString()
     {
         return Name ?? string.Empty;
+    }
+
+    public List<Story> GetAllStories()
+    {
+        List<Story> stories = new(AdditionalStories);
+
+        foreach (Town town in Towns)
+            town.PopulateStories(stories);
+
+        return stories;
     }
 }

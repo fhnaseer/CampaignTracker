@@ -3,7 +3,8 @@
 public enum Status
 {
     Unexplored,
-    Explored,
+    NotVisited,
+    Visited,
     FullyExplored,
     NotAvailable,
     Crossed
