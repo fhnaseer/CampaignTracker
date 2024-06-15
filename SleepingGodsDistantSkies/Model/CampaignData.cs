@@ -7,6 +7,7 @@ public partial class CampaignData : ObservableObject
         Name = name;
         Towns = StaticContent.StoryData.GetTowns();
         Keywords = [];
+        Stories = [];
     }
 
     [ObservableProperty]
@@ -18,4 +19,5 @@ public partial class CampaignData : ObservableObject
     [ObservableProperty]
     private ObservableCollection<string> _keywords;
 
+    public Dictionary<string, Story> Stories { get; set; }
 }

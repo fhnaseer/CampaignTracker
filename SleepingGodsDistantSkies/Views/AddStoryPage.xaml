@@ -14,9 +14,6 @@
             <Label Text="Required Keyword" />
             <Entry Text="{Binding RequiredKeyword}" />
             <Button Text="Add" Command="{Binding AddCommand}" />
-            <Label Text="Add existing story," />
-            <Picker ItemsSource="{Binding ExistingStories}" SelectedItem="{Binding SelectedExistingStory}" ItemDisplayBinding="{Binding Number}" />
-            <Button Text="Add existing story," Command="{Binding AddExistingStoryCommand}" />
             <Label Text="Explore story," />
             <Button Text="Explore" Command="{Binding ExploreCommand}" />
         </VerticalStackLayout>

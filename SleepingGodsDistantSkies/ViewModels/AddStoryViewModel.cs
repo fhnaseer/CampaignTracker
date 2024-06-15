@@ -1,9 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace SleepingGodsDistantSkies.ViewModels;
+﻿namespace SleepingGodsDistantSkies.ViewModels;
 
 [QueryProperty(nameof(Town), nameof(Town))]
-[QueryProperty("ParentStory", nameof(ParentStory))]
 [QueryProperty("CurrentStory", nameof(CurrentStory))]
 public partial class AddStoryViewModel : ViewModelBase
 {
@@ -11,24 +8,7 @@ public partial class AddStoryViewModel : ViewModelBase
     private Town? _town;
 
     [ObservableProperty]
-    private Story? _parentStory;
-
-    [ObservableProperty]
     private Story? _currentStory;
-
-    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
-    {
-        base.OnPropertyChanged(e);
-
-        if (e.PropertyName == nameof(ParentStory) && ParentStory is not null)
-        {
-            ExistingStories.Clear();
-            ExistingStories.Add(ParentStory);
-
-            foreach (Story child in ParentStory.Stories)
-                ExistingStories.Add(child);
-        }
-    }
 
     [ObservableProperty]
     private string? _storyNumber;
@@ -37,41 +17,33 @@ public partial class AddStoryViewModel : ViewModelBase
     private string? _requiredKeyword;
 
     [ObservableProperty]
-    private Story? _selectedExistingStory;
-
-    [ObservableProperty]
     private ObservableCollection<Story> _existingStories = [];
 
     [RelayCommand]
     private void Add()
     {
-        if (CurrentStory is null || StoryNumber is null)
+        if (CampaignData is null || CurrentStory is null || StoryNumber is null)
             return;
 
-        Story newStory = new(StoryNumber)
+        if (!CampaignData.Stories.TryGetValue(StoryNumber, out Story? story))
         {
-            RequiredKeyword = RequiredKeyword
-        };
-        CurrentStory.Stories.Add(newStory);
-        StoryNumber = RequiredKeyword = null;
-        SelectedExistingStory = null;
-    }
+            story = new(StoryNumber)
+            {
+                RequiredKeyword = RequiredKeyword,
+            };
+        }
 
-    [RelayCommand]
-    private void AddExistingStory()
-    {
-        if (SelectedExistingStory is null || CurrentStory is null)
-            return;
-
-        CurrentStory.Stories.Add(SelectedExistingStory);
+        CurrentStory.Stories.Add(story);
         StoryNumber = RequiredKeyword = null;
-        SelectedExistingStory = null;
     }
 
     [RelayCommand]
     private async Task Explore()
     {
         if (CurrentStory is not null)
-            await GoToStory(Town, CurrentStory, ParentStory, true);
+        {
+            CurrentStory.Status = Status.Explored;
+            await GoToStory(Town, CurrentStory);
+        }
     }
 }

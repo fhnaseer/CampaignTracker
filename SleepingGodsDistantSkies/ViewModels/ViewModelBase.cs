@@ -11,10 +11,10 @@ public abstract partial class ViewModelBase : ObservableObject
     [RelayCommand]
     protected virtual async Task GoBack()
     {
-        await Shell.Current.GoToAsync("..");
+        await Task.CompletedTask.ConfigureAwait(false);// Shell.Current.GoToAsync("..");
     }
 
-    protected async Task GoToStory(Town? town, Story? story, Story? parentStory, bool forceExplore)
+    protected async Task GoToStory(Town? town, Story? story)
     {
         if (town is null || story is null)
             return;
@@ -26,28 +26,12 @@ public abstract partial class ViewModelBase : ObservableObject
         {
             { nameof(Town), town },
             { "CurrentStory", story },
-            { "ParentStory", parentStory},
             { nameof(CampaignData), CampaignData}
         };
 
-        if (story.Status == Status.Unexplored && !forceExplore)
-            await Shell.Current.GoToAsync(nameof(AddStoryViewModel), state);
-        else
-            await Shell.Current.GoToAsync(nameof(ExploreStoryViewModel), state);
-    }
-
-    [RelayCommand]
-    protected async Task GoToTown(Town? town)
-    {
-        if (town is null)
-            return;
-
-        Dictionary<string, object> state = new()
-        {
-            { nameof(Town), town },
-            { nameof(CampaignData), CampaignData ?? new CampaignData("") }
-        };
-        await Shell.Current.GoToAsync(nameof(ExploreTownViewModel), state);
+        string viewModeName = story.Status == Status.Unexplored ? nameof(AddStoryViewModel) : nameof(ExploreStoryViewModel);
+        story.Status = Status.Explored;
+        await Shell.Current.GoToAsync(viewModeName, state).ConfigureAwait(false);
     }
 
     [RelayCommand]

@@ -3,15 +3,11 @@
 namespace SleepingGodsDistantSkies.ViewModels;
 
 [QueryProperty(nameof(Town), nameof(Town))]
-[QueryProperty("ParentStory", nameof(ParentStory))]
 [QueryProperty("CurrentStory", nameof(CurrentStory))]
 public partial class ExploreStoryViewModel : ViewModelBase
 {
     [ObservableProperty]
     private Town? _town;
-
-    [ObservableProperty]
-    private Story? _parentStory;
 
     [ObservableProperty]
     private Story? _currentStory;
