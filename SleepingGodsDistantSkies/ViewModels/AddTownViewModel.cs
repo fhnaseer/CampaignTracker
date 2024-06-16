@@ -1,4 +1,6 @@
-﻿namespace SleepingGodsDistantSkies.ViewModels;
+﻿using SleepingGodsDistantSkies.StaticContent;
+
+namespace SleepingGodsDistantSkies.ViewModels;
 
 public partial class AddTownViewModel : ViewModelBase
 {
@@ -26,6 +28,7 @@ public partial class AddTownViewModel : ViewModelBase
 
         CampaignData?.Towns.Add(town);
         Name = Stories = null;
+        FileHelpers.SaveCampaign(CampaignData);
     }
 
     protected override async Task GoBack()

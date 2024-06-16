@@ -11,13 +11,13 @@ public partial class CampaignData : ObservableObject
     private string _name;
 
     [ObservableProperty]
+    private Dictionary<string, Story> _stories = [];
+
+    [ObservableProperty]
     private ObservableCollection<Town> _towns = [];
 
     [ObservableProperty]
     private ObservableCollection<string> _keywords = [];
-
-    [ObservableProperty]
-    private Dictionary<string, Story> _stories = [];
 
     public override string ToString()
     {

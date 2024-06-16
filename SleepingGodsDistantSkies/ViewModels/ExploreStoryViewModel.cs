@@ -33,6 +33,7 @@ public partial class ExploreStoryViewModel : ViewModelBase
         if (Story is not null)
             Story.Status = Status;
 
+        FileHelpers.SaveCampaign(CampaignData);
         await GoToStory(Town, story).ConfigureAwait(false);
     }
 
@@ -46,6 +47,7 @@ public partial class ExploreStoryViewModel : ViewModelBase
             Story.Status = Status;
 
         FileHelpers.PopulateTownStories(CampaignData, town);
+        FileHelpers.SaveCampaign(CampaignData);
 
         Dictionary<string, object?> state = new()
         {

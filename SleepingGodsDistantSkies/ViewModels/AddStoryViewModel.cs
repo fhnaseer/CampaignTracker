@@ -1,4 +1,6 @@
-﻿namespace SleepingGodsDistantSkies.ViewModels;
+﻿using SleepingGodsDistantSkies.StaticContent;
+
+namespace SleepingGodsDistantSkies.ViewModels;
 
 [QueryProperty(nameof(Town), nameof(Town))]
 [QueryProperty(nameof(Story), nameof(Story))]
@@ -39,6 +41,7 @@ public partial class AddStoryViewModel : ViewModelBase
 
         Story.StoryNumbers.Add(StoryNumber);
         StoryNumber = RequiredKeyword = UnavailableKeyword = null;
+        FileHelpers.SaveCampaign(CampaignData);
     }
 
     [RelayCommand]

@@ -26,6 +26,7 @@ public abstract partial class ViewModelBase : ObservableObject
             CampaignData?.Keywords.Add(Keyword.ToUpper());
 
         Keyword = string.Empty;
+        FileHelpers.SaveCampaign(CampaignData);
     }
 
     [RelayCommand]
@@ -35,6 +36,7 @@ public abstract partial class ViewModelBase : ObservableObject
             _ = (CampaignData?.Keywords.Remove(Keyword.ToUpper()));
 
         Keyword = string.Empty;
+        FileHelpers.SaveCampaign(CampaignData);
     }
 
     [RelayCommand]
@@ -44,6 +46,7 @@ public abstract partial class ViewModelBase : ObservableObject
             _ = (CampaignData?.Stories.Remove(Keyword));
 
         Keyword = string.Empty;
+        FileHelpers.SaveCampaign(CampaignData);
     }
 
     protected async Task GoToStory(Town? town, Story? story)
@@ -60,8 +63,6 @@ public abstract partial class ViewModelBase : ObservableObject
         if (!string.IsNullOrWhiteSpace(story.UnavailableKeyword) && CampaignData.Keywords.Contains(story.UnavailableKeyword.ToUpper()))
             return;
 
-        FileHelpers.PopulateStories(CampaignData, story);
-
         Dictionary<string, object?> state = new()
         {
             { nameof(Town), town },
@@ -72,12 +73,10 @@ public abstract partial class ViewModelBase : ObservableObject
         string viewModeName = story.Status == Status.Unexplored ? nameof(AddStoryViewModel) : nameof(ExploreStoryViewModel);
         if (story.Status == Status.Unexplored)
             story.Status = Status.NotVisited;
-        await Shell.Current.GoToAsync(viewModeName, state).ConfigureAwait(false);
-    }
 
-    [RelayCommand]
-    protected void Save(CampaignData campaignData)
-    {
-        FileHelpers.SaveCampaign(campaignData);
+        FileHelpers.PopulateStories(CampaignData, story);
+        FileHelpers.SaveCampaign(CampaignData);
+
+        await Shell.Current.GoToAsync(viewModeName, state).ConfigureAwait(false);
     }
 }

@@ -23,7 +23,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Margin="10,10,10,0" Text="Save" Command="{Binding SaveCommand}" CommandParameter="{Binding CampaignData}" />
             <Button Margin="10,10,10,0" Text="Add Town" Command="{Binding AddTownCommand}" />
 
             <Label />

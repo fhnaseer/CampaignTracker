@@ -61,8 +61,10 @@ internal static class FileHelpers
         return campaigns;
     }
 
-    public static void SaveCampaign(CampaignData campaign)
+    public static void SaveCampaign(CampaignData? campaign)
     {
+        if (campaign == null) return;
+
         foreach (Story story in campaign.Stories.Values)
             story.Stories.Clear();
 
