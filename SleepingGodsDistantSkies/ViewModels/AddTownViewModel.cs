@@ -11,15 +11,20 @@ public partial class AddTownViewModel : ViewModelBase
     [RelayCommand]
     public void Add()
     {
-        if (string.IsNullOrEmpty(Name) || string.IsNullOrWhiteSpace(Stories))
+        if (string.IsNullOrEmpty(Name) || string.IsNullOrWhiteSpace(Stories) || CampaignData is null)
             return;
 
         Town town = new(Name);
-        string[] stories = Stories.Split(',', StringSplitOptions.RemoveEmptyEntries);
-        foreach (string story in stories)
-            town.Stories.Add(new Story(story));
-        CampaignData?.Towns.Add(town);
+        string[] storyNumbers = Stories.Split(',', StringSplitOptions.RemoveEmptyEntries);
 
+        foreach (string storyNumber in storyNumbers)
+        {
+            Story story = new(storyNumber);
+            town.Stories.Add(story);
+            CampaignData.Stories.Add(storyNumber, story);
+        }
+
+        CampaignData?.Towns.Add(town);
         Name = Stories = null;
     }
 

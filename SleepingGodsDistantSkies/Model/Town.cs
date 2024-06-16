@@ -6,16 +6,13 @@ public partial class Town(string name) : ObservableObject
     private string _name = name;
 
     [ObservableProperty]
+    public List<string> _storyNumbers = [];
+
+    [ObservableProperty]
     private ObservableCollection<Story> _stories = [];
 
     public override string ToString()
     {
         return Name;
-    }
-
-    public void PopulateStories(List<Story> stories)
-    {
-        foreach (Story story in Stories)
-            story.PopulateStories(stories);
     }
 }

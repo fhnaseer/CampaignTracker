@@ -25,19 +25,19 @@ public partial class AddStoryViewModel : ViewModelBase
         if (CampaignData is null || Story is null || StoryNumber is null)
             return;
 
-        List<Story> stories = CampaignData.GetAllStories();
-        Story? story = stories.FirstOrDefault(s => s.Number == StoryNumber);
-
-        if (story != null)
+        if (Story.StoryNumbers.Contains(StoryNumber))
             return;
 
-        story ??= new(StoryNumber)
+        if (!CampaignData.Stories.TryGetValue(StoryNumber, out _))
         {
-            RequiredKeyword = RequiredKeyword?.ToUpper(),
-            UnavailableKeyword = UnavailableKeyword?.ToUpper(),
-        };
+            CampaignData.Stories[StoryNumber] = new(StoryNumber)
+            {
+                RequiredKeyword = RequiredKeyword?.ToUpper(),
+                UnavailableKeyword = UnavailableKeyword?.ToUpper(),
+            };
+        }
 
-        Story.Stories.Add(story);
+        Story.StoryNumbers.Add(StoryNumber);
         StoryNumber = RequiredKeyword = UnavailableKeyword = null;
     }
 

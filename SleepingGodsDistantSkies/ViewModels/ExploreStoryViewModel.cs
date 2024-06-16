@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using SleepingGodsDistantSkies.StaticContent;
+using System.ComponentModel;
 
 namespace SleepingGodsDistantSkies.ViewModels;
 
@@ -38,8 +39,13 @@ public partial class ExploreStoryViewModel : ViewModelBase
     [RelayCommand]
     private async Task GoBackToTown(Town town)
     {
+        if (CampaignData is null)
+            return;
+
         if (Story is not null)
             Story.Status = Status;
+
+        FileHelpers.PopulateTownStories(CampaignData, town);
 
         Dictionary<string, object?> state = new()
         {

@@ -6,6 +6,9 @@ public partial class Story(string number) : ObservableObject
     private string _number = number;
 
     [ObservableProperty]
+    public List<string> _storyNumbers = [];
+
+    [ObservableProperty]
     private ObservableCollection<Story> _stories = [];
 
     [ObservableProperty]
@@ -22,11 +25,10 @@ public partial class Story(string number) : ObservableObject
         return Number.GetHashCode();
     }
 
-    public void PopulateStories(List<Story> stories)
+    public override string ToString()
     {
-        stories.Add(this);
-
-        foreach (Story story in Stories)
-            story.PopulateStories(stories);
+        return $"Story: {Number}\nStatus: {Status}" +
+            $"{(string.IsNullOrWhiteSpace(RequiredKeyword) ? "" : $"\nRequired Keyword: {RequiredKeyword}")}" +
+            $"{(string.IsNullOrWhiteSpace(UnavailableKeyword) ? "" : $"\nUnavailable Keyword: {UnavailableKeyword}")}";
     }
 }

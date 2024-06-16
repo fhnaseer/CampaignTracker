@@ -22,12 +22,7 @@
                                                           CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
                                 <StackLayout>
-                                    <Label Margin="5,5,5,0" Text="{Binding Number}" />
-                                    <Label Margin="5,5,5,0" Text="{Binding Status}" />
-                                    <Label Margin="5,5,5,0" Text="Requires Keyword" />
-                                    <Label Margin="5,5,5,0" Text="{Binding RequiredKeyword}" />
-                                    <Label Margin="5,5,5,0" Text="Unavailable Keyword" />
-                                    <Label Margin="5" Text="{Binding UnavailableKeyword}" />
+                                    <Label Margin="5,5,5,0" Text="{Binding}" />
                                 </StackLayout>
                             </Frame>
                         </Grid>
@@ -39,11 +34,13 @@
             <Label/>
             <Label/>
 
-            <Label Margin="10" Text="Keywords" FontAttributes="Bold" />
+            <Label Margin="10" Text="Campaign Data" FontAttributes="Bold" />
             <Entry Margin="10,10,10,0" Text="{Binding Keyword}" />
             <Button Margin="10,10,10,0" Text="Gain Keyword" Command="{Binding AddKeywordCommand}" />
             <Button Margin="10" Text="Lose Keyword" Command="{Binding RemoveKeywordCommand}" />
-
+            <Button Margin="10" Text="Cross Off Location" Command="{Binding CrossStoryCommand}" />
+            
+            <Label Margin="10" Text="Available Keywords" FontAttributes="Bold" />
             <CollectionView ItemsSource="{Binding CampaignData.Keywords}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="x:String">

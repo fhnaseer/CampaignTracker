@@ -37,6 +37,15 @@ public abstract partial class ViewModelBase : ObservableObject
         Keyword = string.Empty;
     }
 
+    [RelayCommand]
+    protected void CrossStory()
+    {
+        if (!string.IsNullOrWhiteSpace(Keyword))
+            _ = (CampaignData?.Stories.Remove(Keyword));
+
+        Keyword = string.Empty;
+    }
+
     protected async Task GoToStory(Town? town, Story? story)
     {
         if (town is null || story is null || CampaignData is null)
@@ -51,6 +60,8 @@ public abstract partial class ViewModelBase : ObservableObject
         if (!string.IsNullOrWhiteSpace(story.UnavailableKeyword) && CampaignData.Keywords.Contains(story.UnavailableKeyword.ToUpper()))
             return;
 
+        FileHelpers.PopulateStories(CampaignData, story);
+
         Dictionary<string, object?> state = new()
         {
             { nameof(Town), town },
@@ -59,7 +70,8 @@ public abstract partial class ViewModelBase : ObservableObject
         };
 
         string viewModeName = story.Status == Status.Unexplored ? nameof(AddStoryViewModel) : nameof(ExploreStoryViewModel);
-        story.Status = Status.NotVisited;
+        if (story.Status == Status.Unexplored)
+            story.Status = Status.NotVisited;
         await Shell.Current.GoToAsync(viewModeName, state).ConfigureAwait(false);
     }
 

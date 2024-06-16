@@ -15,7 +15,11 @@ internal static class FileHelpers
         using StreamWriter fileWriter = new(fileStream);
         fileWriter.WriteLine(campaignName);
 
-        CampaignData campaign = new(campaignName, isDistantSkies);
+        CampaignData campaign = new(campaignName);
+
+        if (isDistantSkies)
+            StoryData.AddDistantSkiesTowns(campaign);
+
         SaveCampaign(campaign);
 
         return campaign;
@@ -59,10 +63,49 @@ internal static class FileHelpers
 
     public static void SaveCampaign(CampaignData campaign)
     {
+        foreach (Story story in campaign.Stories.Values)
+            story.Stories.Clear();
+
+        foreach (Town town in campaign.Towns)
+            town.Stories.Clear();
+
         string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + campaign.Name + ".json");
         using Stream campaingStream = File.OpenWrite(path);
         using StreamWriter campaingWriter = new(campaingStream);
         campaingWriter.Write(JsonSerializer.Serialize(campaign));
+        PopulateCampaignStories(campaign);
+
+    }
+
+    private static void PopulateCampaignStories(CampaignData campaign)
+    {
+        foreach (Story story in campaign.Stories.Values)
+            PopulateStories(campaign, story);
+
+        foreach (Town town in campaign.Towns)
+            PopulateTownStories(campaign, town);
+    }
+
+    public static void PopulateTownStories(CampaignData campaign, Town town)
+    {
+        town.Stories.Clear();
+
+        foreach (string storyNumber in town.StoryNumbers)
+        {
+            if (campaign.Stories.TryGetValue(storyNumber, out Story? subStory))
+                town.Stories.Add(subStory);
+        }
+    }
+
+    public static void PopulateStories(CampaignData campaign, Story story)
+    {
+        story.Stories.Clear();
+
+        foreach (string storyNumber in story.StoryNumbers)
+        {
+            if (campaign.Stories.TryGetValue(storyNumber, out Story? subStory))
+                story.Stories.Add(subStory);
+        }
     }
 
     public static async Task<string> ReadTextFile(string filename)
