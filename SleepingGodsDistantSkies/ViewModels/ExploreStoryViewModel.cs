@@ -49,9 +49,8 @@ public partial class ExploreStoryViewModel : ViewModelBase
 
         Dictionary<string, object?> state = new()
         {
-            { nameof(Town), town },
             { nameof(CampaignData), CampaignData }
         };
-        await Shell.Current.GoToAsync(nameof(ExploreTownViewModel), state);
+        await Shell.Current.GoToAsync(nameof(CampaignViewModel), state);
     }
 }
