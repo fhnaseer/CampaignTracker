@@ -14,17 +14,18 @@ public abstract partial class ViewModelBase : ObservableObject
     [RelayCommand]
     protected virtual async Task GoBack()
     {
-        await Task.CompletedTask.ConfigureAwait(false);// Shell.Current.GoToAsync("..").ConfigureAwait(false);;
+        await Shell.Current.GoToAsync("..").ConfigureAwait(false);
     }
 
     [RelayCommand]
     protected void AddKeyword()
     {
+        _ = (CampaignData?.Keywords.Remove(Keyword.ToUpper()));
+
         if (!string.IsNullOrWhiteSpace(Keyword))
-        {
-            _ = (CampaignData?.Keywords.Remove(Keyword.ToUpper()));
             CampaignData?.Keywords.Add(Keyword.ToUpper());
-        }
+
+        Keyword = string.Empty;
     }
 
     [RelayCommand]
@@ -32,6 +33,8 @@ public abstract partial class ViewModelBase : ObservableObject
     {
         if (!string.IsNullOrWhiteSpace(Keyword))
             _ = (CampaignData?.Keywords.Remove(Keyword.ToUpper()));
+
+        Keyword = string.Empty;
     }
 
     protected async Task GoToStory(Town? town, Story? story)

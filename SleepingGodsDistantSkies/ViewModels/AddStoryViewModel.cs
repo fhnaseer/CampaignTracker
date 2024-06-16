@@ -27,6 +27,10 @@ public partial class AddStoryViewModel : ViewModelBase
 
         List<Story> stories = CampaignData.GetAllStories();
         Story? story = stories.FirstOrDefault(s => s.Number == StoryNumber);
+
+        if (story != null)
+            return;
+
         story ??= new(StoryNumber)
         {
             RequiredKeyword = RequiredKeyword?.ToUpper(),
