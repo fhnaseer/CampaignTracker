@@ -29,7 +29,9 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Margin="10,10,10,0" Text="Go Back" Command="{Binding GoBackToTownCommand}" CommandParameter="{Binding Town}" />
+            <Label Margin="10" Text="Towns" FontAttributes="Bold" />
+            <Picker Margin="10,10,10,0" ItemsSource="{Binding CampaignData.Towns}" SelectedItem="{Binding SelectedTown}" />
+            <Button Margin="10,10,10,0" Text="Visit Town" Command="{Binding GoBackToTownCommand}" />
 
             <Label/>
             <Label/>

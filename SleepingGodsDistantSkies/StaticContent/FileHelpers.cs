@@ -72,9 +72,14 @@ internal static class FileHelpers
             town.Stories.Clear();
 
         string path = Path.Combine(FileSystem.Current.AppDataDirectory, _campaignFilenamePrefix + campaign.Name + ".json");
+        File.Delete(path);
         using Stream campaingStream = File.OpenWrite(path);
         using StreamWriter campaingWriter = new(campaingStream);
-        campaingWriter.Write(JsonSerializer.Serialize(campaign));
+        JsonSerializerOptions options = new(JsonSerializerDefaults.General)
+        {
+            WriteIndented = true
+        };
+        campaingWriter.Write(JsonSerializer.Serialize(campaign, options));
         PopulateCampaignStories(campaign);
 
     }

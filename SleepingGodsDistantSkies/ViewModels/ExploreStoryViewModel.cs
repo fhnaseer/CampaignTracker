@@ -19,8 +19,13 @@ public partial class ExploreStoryViewModel : ViewModelBase
     [ObservableProperty]
     private Status _status;
 
+    [ObservableProperty]
+    private Town? _selectedTown;
+
     protected override void OnPropertyChanged(PropertyChangedEventArgs e)
     {
+        SelectedTown ??= Town;
+
         base.OnPropertyChanged(e);
 
         if (e.PropertyName == nameof(Story) && Story is not null)
@@ -38,7 +43,7 @@ public partial class ExploreStoryViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private async Task GoBackToTown(Town town)
+    private async Task GoBackToTown()
     {
         if (CampaignData is null)
             return;
@@ -46,13 +51,16 @@ public partial class ExploreStoryViewModel : ViewModelBase
         if (Story is not null)
             Story.Status = Status;
 
-        FileHelpers.PopulateTownStories(CampaignData, town);
         FileHelpers.SaveCampaign(CampaignData);
+        if (Town is not null)
+            FileHelpers.PopulateTownStories(CampaignData, Town);
 
         Dictionary<string, object?> state = new()
         {
+            { nameof(Town), SelectedTown},
             { nameof(CampaignData), CampaignData }
         };
-        await Shell.Current.GoToAsync(nameof(CampaignViewModel), state);
+        string pageName = SelectedTown is null ? nameof(CampaignViewModel) : nameof(ExploreTownViewModel);
+        await Shell.Current.GoToAsync(pageName, state);
     }
 }

@@ -14,7 +14,14 @@ public abstract partial class ViewModelBase : ObservableObject
     [RelayCommand]
     protected virtual async Task GoBack()
     {
-        await Shell.Current.GoToAsync("..").ConfigureAwait(false);
+        if (CampaignData is null)
+            return;
+
+        Dictionary<string, object> state = new()
+        {
+            { nameof(CampaignData), CampaignData }
+        };
+        await Shell.Current.GoToAsync(nameof(CampaignViewModel), state).ConfigureAwait(false);
     }
 
     [RelayCommand]
@@ -74,8 +81,8 @@ public abstract partial class ViewModelBase : ObservableObject
         if (story.Status == Status.Unexplored)
             story.Status = Status.NotVisited;
 
-        FileHelpers.PopulateStories(CampaignData, story);
         FileHelpers.SaveCampaign(CampaignData);
+        FileHelpers.PopulateStories(CampaignData, story);
 
         await Shell.Current.GoToAsync(viewModeName, state).ConfigureAwait(false);
     }

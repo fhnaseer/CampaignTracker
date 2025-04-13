@@ -11,16 +11,4 @@ public partial class ExploreTownViewModel : ViewModelBase
     {
         await GoToStory(Town, story).ConfigureAwait(false);
     }
-
-    protected override async Task GoBack()
-    {
-        if (CampaignData is null)
-            return;
-
-        Dictionary<string, object> state = new()
-        {
-            { nameof(CampaignData), CampaignData }
-        };
-        await Shell.Current.GoToAsync(nameof(CampaignViewModel), state).ConfigureAwait(false); ;
-    }
 }

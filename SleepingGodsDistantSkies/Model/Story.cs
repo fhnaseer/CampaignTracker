@@ -6,7 +6,7 @@ public partial class Story(string number) : ObservableObject
     private string _number = number;
 
     [ObservableProperty]
-    public List<string> _storyNumbers = [];
+    public ObservableCollection<string> _storyNumbers = [];
 
     [ObservableProperty]
     private ObservableCollection<Story> _stories = [];

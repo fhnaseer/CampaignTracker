@@ -30,17 +30,19 @@ public partial class AddStoryViewModel : ViewModelBase
         if (Story.StoryNumbers.Contains(StoryNumber))
             return;
 
-        if (!CampaignData.Stories.TryGetValue(StoryNumber, out _))
+        if (!CampaignData.Stories.TryGetValue(StoryNumber, out Story? story))
         {
-            CampaignData.Stories[StoryNumber] = new(StoryNumber)
+            story = new(StoryNumber)
             {
                 RequiredKeyword = RequiredKeyword?.ToUpper(),
                 UnavailableKeyword = UnavailableKeyword?.ToUpper(),
             };
         }
 
+        CampaignData.Stories[StoryNumber] = story;
         Story.StoryNumbers.Add(StoryNumber);
-        StoryNumber = RequiredKeyword = UnavailableKeyword = null;
+        RequiredKeyword = UnavailableKeyword = null;
+        StoryNumber = Story.Number.Split('.').First() + ".";
         FileHelpers.SaveCampaign(CampaignData);
     }
 

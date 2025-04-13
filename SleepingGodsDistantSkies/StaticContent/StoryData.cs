@@ -5,7 +5,7 @@ internal static class StoryData
     public static void AddDistantSkiesTowns(CampaignData campaign)
     {
         AddTown(campaign, "Serracks Edge", ["", "25", "37", "41", "55", "63", "69", "74", "83", "94"]);
-        AddTown(campaign, "Tundra", ["", "29", "43", "56", "61", "73", "82", "97"]);
+        AddTown(campaign, "Tundra", ["", "18", "29", "43", "56", "61", "73", "82", "97"]);
         AddTown(campaign, "God Eye", ["", "19", "30", "42", "62", "70", "81", "85", "87"]);
 
         AddTown(campaign, "Stormlock City", ["", "17", "21", "36", "40", "49", "51", "53", "65", "84", "86", "92", "96"]);

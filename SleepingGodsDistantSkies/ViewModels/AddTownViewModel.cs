@@ -30,9 +30,4 @@ public partial class AddTownViewModel : ViewModelBase
         Name = Stories = null;
         FileHelpers.SaveCampaign(CampaignData);
     }
-
-    protected override async Task GoBack()
-    {
-        await Shell.Current.GoToAsync("..").ConfigureAwait(false); ;
-    }
 }
